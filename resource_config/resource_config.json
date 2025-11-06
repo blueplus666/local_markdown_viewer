@@ -1,0 +1,54 @@
+{
+  "limits": [
+    {
+      "resource_type": "cpu",
+      "parameter_name": "cpu_usage_percent",
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "warning_threshold": 80.0,
+      "critical_threshold": 95.0,
+      "enabled": true,
+      "description": "CPU使用率限制"
+    },
+    {
+      "resource_type": "memory",
+      "parameter_name": "memory_usage_percent",
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "warning_threshold": 80.0,
+      "critical_threshold": 95.0,
+      "enabled": true,
+      "description": "内存使用率限制"
+    },
+    {
+      "resource_type": "disk",
+      "parameter_name": "disk_usage_percent",
+      "min_value": 0.0,
+      "max_value": 100.0,
+      "warning_threshold": 85.0,
+      "critical_threshold": 95.0,
+      "enabled": true,
+      "description": "磁盘使用率限制"
+    },
+    {
+      "resource_type": "process",
+      "parameter_name": "process_count",
+      "min_value": 1,
+      "max_value": 1000,
+      "warning_threshold": 800,
+      "critical_threshold": 950,
+      "enabled": true,
+      "description": "进程数量限制"
+    },
+    {
+      "resource_type": "thread",
+      "parameter_name": "thread_count",
+      "min_value": 1,
+      "max_value": 10000,
+      "warning_threshold": 8000,
+      "critical_threshold": 9500,
+      "enabled": true,
+      "description": "线程数量限制"
+    }
+  ]
+}

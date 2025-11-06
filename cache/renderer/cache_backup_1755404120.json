@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-08-17T12:15:20.198638",
+    "strategy": "lru",
+    "max_size": 2000,
+    "stats": {
+      "total_entries": 3,
+      "hit_count": 5,
+      "miss_count": 1,
+      "eviction_count": 0,
+      "total_size": 2,
+      "max_size": 2000,
+      "hit_rate": 0.8333333333333334,
+      "memory_usage": 0.00045871734619140625
+    }
+  },
+  "entries": {
+    "rendered_e82b54508fc678002ac7bbb05007d844": {
+      "key": "rendered_e82b54508fc678002ac7bbb05007d844",
+      "value": {
+        "success": true,
+        "html": "<h1 id=\"_1\">测试内容</h1>",
+        "content_length": 7,
+        "metadata": {
+          "renderer": "basic",
+          "extensions": []
+        }
+      },
+      "created_time": 1755404068.671622,
+      "last_access_time": 1755404068.6716228,
+      "access_count": 1,
+      "ttl": 7200,
+      "strategy": "lru",
+      "metadata": {}
+    },
+    "content_e82b54508fc678002ac7bbb05007d844": {
+      "key": "content_e82b54508fc678002ac7bbb05007d844",
+      "value": {
+        "content": "# 测试内容\n",
+        "timestamp": 1755404068.5820818
+      },
+      "created_time": 1755404068.5820847,
+      "last_access_time": 1755404068.6701207,
+      "access_count": 2,
+      "ttl": 3600,
+      "strategy": "lru",
+      "metadata": {}
+    }
+  }
+}

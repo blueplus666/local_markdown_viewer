@@ -1,0 +1,267 @@
+{
+  "task_set_id": "LAD-IMPL-012-015-V4.0",
+  "version": "1.0",
+  "notes": "Machine-readable checklist for distributed AI execution. Follows preflight-first, then 012→013→014→015B with 015 parallel and 012-concurrency optional.",
+  "tasks": [
+    {
+      "step_id": "S00",
+      "title": "Preflight: configs, code paths, and safety defaults",
+      "category": "preflight",
+      "ref_doc": "docs/LAD-IMPL-012到015-统一执行指引与前置条件V1.0.md",
+      "ref_section": "## 2. 前置条件（Preflight Checks）",
+      "target_files": [
+        "core/link_processor.py",
+        "ui/content_viewer.py",
+        "core/performance_metrics.py",
+        "utils/config_manager.py",
+        "error_history/core/manager.py"
+      ],
+      "required_configs": [
+        "config/app_config.json (app.link_processing)",
+        "config/runtime/performance.json (thresholds)",
+        "config/features/error_history.json (suggested; create minimal if missing)"
+      ],
+      "preconditions": [
+        "Prefer app.link_processing; fallback to features/link_processing.json",
+        "features/security.json available or planned",
+        "ContentViewer LPCLICK path active and single-injection",
+        "features/error_history.json present or generated (minimal)"
+      ],
+      "ai_guardrails": [
+        "Do not modify core behavior outside 012-015 scope",
+        "Fail-closed for external links; check_exists=true for file links",
+        "Always validate configs before code changes"
+      ],
+      "skip_if": {
+        "missing_files": [],
+        "missing_dependencies": [],
+        "missing_configs": []
+      },
+      "expected_artifacts": [
+        "docs/012015-preflight-report.md"
+      ],
+      "status": "pending"
+    },
+    {
+      "step_id": "S00E",
+      "title": "Preflight: ensure minimal features/error_history.json",
+      "category": "config",
+      "depends_on": ["S00"],
+      "ref_doc": "docs/LAD-IMPL-012到015-统一执行指引与前置条件V1.0.md",
+      "ref_section": "附录：features/error_history.json 最小配置示例",
+      "target_files": [
+        "config/features/error_history.json"
+      ],
+      "expected_artifacts": [
+        "config/features/error_history.json"
+      ],
+      "status": "pending"
+    },
+    {
+      "step_id": "S00M",
+      "title": "Preflight: validate MainWindow init order (dynamic_importer/state_manager)",
+      "category": "review",
+      "depends_on": ["S00"],
+      "ref_doc": "docs/LAD-IMPL-012到015-统一执行指引与前置条件V1.0.md",
+      "ref_section": "[初始化顺序检查]",
+      "target_files": [
+        "ui/main_window.py"
+      ],
+      "preconditions": [
+        "dynamic_importer constructed before set_* injections",
+        "ApplicationStateManager initialized unconditionally (not under conditional branch)"
+      ],
+      "expected_artifacts": [
+        "docs/011-init-order-check-report.md"
+      ],
+      "status": "pending"
+    },
+    {
+      "step_id": "S01",
+      "title": "012: LinkProcessor config compatibility + fail-closed",
+      "category": "impl",
+      "depends_on": ["S00"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "## 2.3 配置集成",
+      "target_files": [
+        "core/link_processor.py",
+        "utils/config_manager.py"
+      ],
+      "ai_guardrails": [
+        "Prefer app.link_processing, fallback features",
+        "Always validate external URLs; set file check_exists=true"
+      ],
+      "expected_artifacts": [
+        "tests/test_link_processor_minimal.py",
+        "docs/012-执行报告.md"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S02",
+      "title": "012: ContentViewer unify LPCLICK injection and actions",
+      "category": "impl",
+      "depends_on": ["S01"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "### 4.1 LAD-IMPL-012: 链接处理接入",
+      "target_files": [
+        "ui/content_viewer.py"
+      ],
+      "ai_guardrails": [
+        "Use single injection at _on_page_load_finished",
+        "Route actions via _execute_link_action"
+      ],
+      "expected_artifacts": [
+        "docs/012-lpclick-integration-report.md"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S03",
+      "title": "012: Align PerformanceMetrics with runtime thresholds",
+      "category": "impl",
+      "depends_on": ["S00"],
+      "ref_doc": "docs/LAD-IMPL-012到015-统一执行指引与前置条件V1.0.md",
+      "ref_section": "### 4.1 LAD-IMPL-012（链接接入，简化版）",
+      "target_files": [
+        "core/performance_metrics.py",
+        "config/runtime/performance.json"
+      ],
+      "expected_artifacts": [
+        "docs/012-metrics-samples.json"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S04",
+      "title": "012: Provide minimal features/link_processing.json & features/security.json",
+      "category": "config",
+      "depends_on": ["S01"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "### 2.1 配置架构",
+      "target_files": [
+        "config/features/link_processing.json",
+        "config/features/security.json"
+      ],
+      "expected_artifacts": [
+        "config/features/link_processing.json",
+        "config/features/security.json"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S05",
+      "title": "012: Minimal tests - URL validation, path resolution, actions",
+      "category": "test",
+      "depends_on": ["S01", "S02", "S04"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "## 5. 验收标准",
+      "target_files": [
+        "tests/test_link_processor_minimal.py"
+      ],
+      "expected_artifacts": [
+        "pytest_report_012.txt"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S06",
+      "title": "013: Security rules (whitelist/blacklist, scheme/path checks)",
+      "category": "impl",
+      "depends_on": ["S05"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "### 4.2 LAD-IMPL-013: 链接处理安全",
+      "target_files": [
+        "core/link_processor.py",
+        "config/features/security.json"
+      ],
+      "expected_artifacts": [
+        "tests/test_link_security_rules.py",
+        "docs/013-安全规则说明.md"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S07",
+      "title": "014: UX improvements (preview, indicators, error messages)",
+      "category": "impl",
+      "depends_on": ["S06"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "### 4.3 LAD-IMPL-014: 链接处理体验",
+      "target_files": [
+        "ui/content_viewer.py"
+      ],
+      "expected_artifacts": [
+        "tests/test_link_preview_and_ux.py",
+        "docs/014-体验优化说明.md"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S08",
+      "title": "015B: E2E acceptance for link processing",
+      "category": "acceptance",
+      "depends_on": ["S07"],
+      "ref_doc": "docs/LAD-IMPL-012到015-链接处理系列-任务提示词.md",
+      "ref_section": "### 4.4 LAD-IMPL-015B: 链接处理验收",
+      "target_files": [
+        "tests/test_link_e2e_acceptance.py"
+      ],
+      "expected_artifacts": [
+        "docs/015B-验收报告.md"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "S09",
+      "title": "015 (parallel): Diagnostics integration for link processing",
+      "category": "impl",
+      "depends_on": ["S00"],
+      "optional": true,
+      "ref_doc": "docs/LAD-IMPL-015-自动化诊断-任务提示词.md",
+      "ref_section": "## 2. 技术方案",
+      "target_files": [
+        "core/debug_diagnostics_manager.py",
+        "core/link_processor.py",
+        "config/features/diagnostics.json"
+      ],
+      "expected_artifacts": [
+        "tests/test_link_processing_diagnostics.py",
+        "docs/015-诊断方案.md"
+      ],
+      "status": "pending"
+    },
+
+    {
+      "step_id": "B1",
+      "title": "012-branch (optional): Concurrency testing",
+      "category": "test",
+      "optional": true,
+      "depends_on": ["S00"],
+      "ref_doc": "docs/LAD-IMPL-012-增强并发测试-任务提示词.md",
+      "ref_section": "## 0. 前置条件与AI执行守则（可选支线，不阻塞主线）",
+      "target_files": [
+        "docs/",
+        "tests/"
+      ],
+      "skip_if": {
+        "missing_dependencies": ["pytest"],
+        "missing_files": [],
+        "missing_configs": []
+      },
+      "expected_artifacts": [
+        "docs/012-concurrency-report.md",
+        "pytest_concurrency_report.txt"
+      ],
+      "status": "pending"
+    }
+  ]
+}

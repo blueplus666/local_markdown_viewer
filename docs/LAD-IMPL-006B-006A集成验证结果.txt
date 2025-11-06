@@ -1,0 +1,37 @@
+============================================================
+006A任务集成测试
+============================================================
+
+[测试] 模拟006A组件初始化
+----------------------------------------
+[OK] ConfigManager初始化成功
+[OK] 旧方式get_config: 本地Markdown文件渲染器
+[OK] 性能配置获取: cache_enabled=True
+
+[测试] 外部模块配置获取（006A核心需求）
+----------------------------------------
+[OK] get_external_module_config成功
+     enabled: True
+     version: 1.0.0
+     module_path: D:\lad\LAD_md_ed2\lad_markdown_viewer
+     required_functions: ['render_markdown_with_zoom', 'render_markdown_to_html']
+
+[测试] 006A模块配置验证
+----------------------------------------
+[OK] enabled字段
+[OK] module_path字段
+[OK] required_functions字段
+[OK] required_functions非空
+
+[OK] 所有006A模块配置验证通过
+
+[测试] 使用get_unified_config访问模块配置
+----------------------------------------
+[OK] get_unified_config('external_modules.markdown_processor')成功
+     enabled: True
+
+============================================================
+[SUCCESS] 006A集成测试完成 - ConfigManager满足006A需求
+============================================================
+
+>> 可以开始执行006A任务 <<

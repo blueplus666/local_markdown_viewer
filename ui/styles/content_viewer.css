@@ -1,0 +1,421 @@
+/* 内容显示组件样式文件 v1.0.0 */
+/* 支持明暗主题和响应式设计 */
+
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 主容器样式 */
+.content-viewer {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* 状态栏样式 */
+.status-bar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.status-bar .status-text {
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.status-bar .controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-bar .progress {
+    width: 120px;
+    height: 4px;
+    background-color: #dee2e6;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.status-bar .progress-bar {
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.status-bar .reload-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.status-bar .reload-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Web引擎视图样式 */
+.web-engine-view {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+    background-color: white;
+}
+
+/* 备用文本显示样式 */
+.fallback-text-edit {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+    padding: 20px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    background-color: #f8f9fa;
+    color: #212529;
+    overflow-y: auto;
+}
+
+/* 内容样式 */
+.content-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Markdown内容样式 */
+.markdown-content {
+    font-size: 14px;
+    color: #333;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #24292e;
+}
+
+.markdown-content h1 {
+    font-size: 2em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 10px;
+}
+
+.markdown-content h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 8px;
+}
+
+.markdown-content p {
+    margin-bottom: 16px;
+}
+
+.markdown-content code {
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    font-size: 85%;
+    margin: 0;
+    padding: 0.2em 0.4em;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+}
+
+.markdown-content pre {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.markdown-content pre code {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+}
+
+/* 代码高亮样式 */
+.code-preview {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.code-preview .code-header {
+    background-color: #e9ecef;
+    padding: 8px 16px;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 12px;
+    color: #6c757d;
+    display: flex;
+    justify-content: space-between;
+}
+
+.code-preview .code-content {
+    padding: 16px;
+    overflow-x: auto;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.code-preview .line-numbers {
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+    color: #999;
+    margin-right: 16px;
+    user-select: none;
+}
+
+/* 图片预览样式 */
+.image-preview {
+    text-align: center;
+    padding: 20px;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 600px;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview .image-info {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+/* 文件信息样式 */
+.file-info {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.file-info .info-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 12px;
+}
+
+.file-info .info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-info .info-table td {
+    padding: 6px 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.file-info .info-table td:first-child {
+    font-weight: 500;
+    color: #6c757d;
+    width: 120px;
+}
+
+/* 错误显示样式 */
+.error-container {
+    text-align: center;
+    padding: 40px 20px;
+    color: #721c24;
+}
+
+.error-container .error-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.error-container .error-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.error-container .error-message {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    color: #721c24;
+    padding: 12px 16px;
+    margin: 16px auto;
+    max-width: 500px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* 暗色主题 */
+@media (prefers-color-scheme: dark) {
+    .content-viewer {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    .status-bar {
+        background-color: #2d2d2d;
+        border-bottom-color: #404040;
+        color: #b0b0b0;
+    }
+    
+    .web-engine-view {
+        background-color: #1a1a1a;
+    }
+    
+    .fallback-text-edit {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+    }
+    
+    .markdown-content {
+        color: #e0e0e0;
+    }
+    
+    .markdown-content h1,
+    .markdown-content h2,
+    .markdown-content h3,
+    .markdown-content h4,
+    .markdown-content h5,
+    .markdown-content h6 {
+        color: #ffffff;
+        border-bottom-color: #404040;
+    }
+    
+    .markdown-content code {
+        background-color: #3d3d3d;
+        color: #e0e0e0;
+    }
+    
+    .markdown-content pre {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+    }
+    
+    .code-preview {
+        background-color: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    .code-preview .code-header {
+        background-color: #404040;
+        border-bottom-color: #555555;
+        color: #b0b0b0;
+    }
+    
+    .file-info {
+        background-color: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    .file-info .info-title {
+        color: #ffffff;
+    }
+    
+    .file-info .info-table td {
+        border-bottom-color: #404040;
+    }
+    
+    .file-info .info-table td:first-child {
+        color: #b0b0b0;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .content-container {
+        padding: 15px;
+    }
+    
+    .markdown-content {
+        font-size: 13px;
+    }
+    
+    .code-preview .code-content {
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .status-bar {
+        padding: 3px 8px;
+        font-size: 11px;
+    }
+    
+    .status-bar .controls {
+        gap: 6px;
+    }
+    
+    .status-bar .progress {
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-container {
+        padding: 10px;
+    }
+    
+    .markdown-content {
+        font-size: 12px;
+    }
+    
+    .file-info .info-table td:first-child {
+        width: 80px;
+    }
+    
+    .status-bar .controls {
+        display: none;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .status-bar {
+        display: none;
+    }
+    
+    .content-viewer {
+        background-color: white;
+        color: black;
+    }
+    
+    .markdown-content,
+    .code-preview,
+    .file-info {
+        break-inside: avoid;
+    }
+}

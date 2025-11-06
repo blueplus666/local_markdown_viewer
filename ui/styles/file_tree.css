@@ -1,0 +1,83 @@
+/* 文件树组件样式 v1.0.0 */
+
+QTreeView {
+    background-color: #fff;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: '微软雅黑', 'Consolas', monospace;
+}
+QTreeView::item {
+    padding: 4px 8px;
+    border: none;
+    min-height: 24px;
+}
+QTreeView::item:selected {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+QTreeView::item:hover {
+    background-color: #f5f5f5;
+}
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+    border-image: none;
+    image: url(:/icons/arrow-right.svg);
+}
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings {
+    border-image: none;
+    image: url(:/icons/arrow-down.svg);
+}
+QLineEdit {
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+}
+QPushButton {
+    padding: 5px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f8f9fa;
+    font-size: 14px;
+}
+QPushButton:hover {
+    background-color: #e9ecef;
+}
+QCheckBox {
+    spacing: 5px;
+    font-size: 14px;
+}
+QLabel {
+    font-size: 12px;
+    color: #666;
+}
+/* 暗色主题支持 */
+@media (prefers-color-scheme: dark) {
+    QTreeView {
+        background-color: #23272e;
+        color: #e0e0e0;
+    }
+    QTreeView::item:selected {
+        background-color: #2d3a4a;
+        color: #90caf9;
+    }
+    QLineEdit, QPushButton {
+        background-color: #2c313a;
+        color: #e0e0e0;
+        border: 1px solid #444;
+    }
+    QCheckBox, QLabel {
+        color: #b0b0b0;
+    }
+}
+/* 响应式设计 */
+@media (max-width: 600px) {
+    QTreeView {
+        font-size: 12px;
+    }
+    QLineEdit, QPushButton, QCheckBox {
+        font-size: 12px;
+    }
+}

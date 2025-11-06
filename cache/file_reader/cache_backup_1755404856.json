@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-08-17T12:27:36.583042",
+    "strategy": "lru",
+    "max_size": 1000,
+    "stats": {
+      "total_entries": 1,
+      "hit_count": 4,
+      "miss_count": 1,
+      "eviction_count": 0,
+      "total_size": 1,
+      "max_size": 1000,
+      "hit_rate": 0.8,
+      "memory_usage": 0.014021873474121094
+    }
+  },
+  "entries": {
+    "file_content_C:\\Users\\guo15\\AppData\\Local\\Temp\\tmppdes7b9e\\integration_test.md": {
+      "key": "file_content_C:\\Users\\guo15\\AppData\\Local\\Temp\\tmppdes7b9e\\integration_test.md",
+      "value": {
+        "success": true,
+        "content": "# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n",
+        "metrics": {
+          "read_time_ms": 47.235965728759766,
+          "bytes_read": 13400,
+          "throughput_mbps": 0.2705403741129203,
+          "cache_hit": true,
+          "strategy_used": "sync",
+          "memory_usage_mb": 0.01277923583984375
+        },
+        "file_info": {
+          "path": "C:\\Users\\guo15\\AppData\\Local\\Temp\\tmppdes7b9e\\integration_test.md",
+          "size": 14000,
+          "modified_time": 1755404851.482271,
+          "file_type": "markdown",
+          "encoding": "utf-8",
+          "checksum": "32d4e88426843e3c10607e981f1ef65f",
+          "last_access": 1755404851.5303228
+        },
+        "cache_hit": true
+      },
+      "created_time": 1755404851.5306726,
+      "last_access_time": 1755404851.5326927,
+      "access_count": 5,
+      "ttl": 1800,
+      "strategy": "lru",
+      "metadata": {}
+    }
+  }
+}

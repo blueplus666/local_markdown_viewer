@@ -1,0 +1,19 @@
+{
+	"environment": "production",
+	"lad_integration": {
+		"enabled": true,
+		"monitoring": {
+			"enabled": true,
+			"interval_seconds": 60,
+			"retention_days": 3
+		}
+	},
+	"ci": {
+		"set_python_utf8": true,
+		"pytest_args": ["-q"]
+	},
+	"prechecks": {
+		"disk_free_gb_min": 1,
+		"ensure_metrics_dir": true
+	}
+}

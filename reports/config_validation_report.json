@@ -1,0 +1,46 @@
+{
+  "generated_at": "2025-10-18T14:34:03.633424",
+  "module_validation": {
+    "valid": true,
+    "validated_modules": [
+      "markdown_processor"
+    ],
+    "module_count": 1,
+    "validation_time": "2025-10-18T14:34:03.633258"
+  },
+  "conflict_detection": {
+    "conflicts_found": false,
+    "conflict_count": 0,
+    "conflicts": [],
+    "validation_time": "2025-10-18T14:34:03.633335"
+  },
+  "config_summary": {
+    "config_files": {
+      "app_config.json": {
+        "exists": true,
+        "size": 2064,
+        "main_sections": [
+          "app",
+          "file_tree",
+          "markdown",
+          "logging",
+          "link_processing",
+          "ui",
+          "performance"
+        ]
+      },
+      "external_modules.json": {
+        "exists": true,
+        "module_count": 1,
+        "modules": [
+          "markdown_processor"
+        ]
+      },
+      "ui_config.json": {
+        "exists": true,
+        "size": 1018
+      }
+    },
+    "summary_time": "2025-10-18T14:34:03.633422"
+  }
+}

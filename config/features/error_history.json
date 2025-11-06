@@ -1,0 +1,8 @@
+{
+  "error_history": {
+    "enabled": true,
+    "retention_days": 30,
+    "storage": "jsonl",
+    "export_xlsx": false
+  }
+}

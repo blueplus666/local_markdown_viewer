@@ -1,0 +1,9 @@
+{
+  "timestamp": "20251106_135427",
+  "backup_path": "D:\\lad\\LAD_md_ed2\\local_markdown_viewer\\utils\\config\\backup\\config_backup_20251106_135427",
+  "files_backed_up": [
+    "cache_config.json",
+    "performance_config.json"
+  ],
+  "description": "配置迁移前的自动备份"
+}

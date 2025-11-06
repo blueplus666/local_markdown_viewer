@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-10-15T12:08:48.952585",
+    "strategy": "lru",
+    "max_size": 2000,
+    "stats": {
+      "total_entries": 2,
+      "hit_count": 0,
+      "miss_count": 1,
+      "eviction_count": 0,
+      "total_size": 2,
+      "max_size": 2000,
+      "hit_rate": 0.0,
+      "memory_usage": 0.006934165954589844
+    }
+  },
+  "entries": {
+    "rendered_a5ca558e0ace02f176ecda3dd30f85a7": {
+      "key": "rendered_a5ca558e0ace02f176ecda3dd30f85a7",
+      "value": {
+        "success": true,
+        "html": "<h1 id=\"_1\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_2\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_3\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_4\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_5\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_6\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_7\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_8\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_9\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_10\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_11\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_12\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_13\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_14\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_15\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_16\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_17\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_18\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_19\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_20\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_21\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_22\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_23\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_24\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_25\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_26\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_27\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_28\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_29\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_30\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_31\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_32\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_33\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_34\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_35\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_36\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_37\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_38\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_39\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_40\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_41\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_42\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_43\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_44\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_45\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_46\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_47\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_48\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_49\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>\n<h1 id=\"_50\">测试内容</h1>\n<p>这是一个测试Markdown内容。</p>",
+        "content_length": 1300,
+        "metadata": {
+          "renderer": "basic",
+          "extensions": []
+        },
+        "metrics": {
+          "render_time_ms": 540.7657623291016,
+          "content_length": 1300,
+          "render_speed_chars_per_ms": 2.4039983493053327,
+          "cache_hit": false,
+          "strategy_used": "incremental",
+          "memory_usage_mb": 0.001239776611328125,
+          "cpu_usage_percent": 0.0
+        },
+        "content_hash": "a5ca558e0ace02f176ecda3dd30f85a7"
+      },
+      "created_time": 1760501318.4227457,
+      "last_access_time": 1760501318.4227457,
+      "access_count": 1,
+      "ttl": 7200,
+      "strategy": "lru",
+      "metadata": {}
+    },
+    "content_a5ca558e0ace02f176ecda3dd30f85a7": {
+      "key": "content_a5ca558e0ace02f176ecda3dd30f85a7",
+      "value": {
+        "content": "# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n# 测试内容\n\n这是一个测试Markdown内容。\n",
+        "timestamp": 1760501318.422981
+      },
+      "created_time": 1760501318.422984,
+      "last_access_time": 1760501318.4229844,
+      "access_count": 1,
+      "ttl": 3600,
+      "strategy": "lru",
+      "metadata": {}
+    }
+  }
+}

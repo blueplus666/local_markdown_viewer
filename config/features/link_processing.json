@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "check_exists": true,
+  "external_links": true,
+  "image_links": true,
+  "mermaid_links": true,
+  "file_protocol": true,
+  "cache_enabled": true,
+  "cache_size": 1000,
+  "error_handling": "strict",
+  "windows_specific": {},
+  "security": {},
+  "logging": { "json": false }
+}

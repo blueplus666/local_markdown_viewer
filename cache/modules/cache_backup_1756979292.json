@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-09-04T17:48:12.309900",
+    "strategy": "lru",
+    "max_size": 200,
+    "stats": {
+      "total_entries": 1,
+      "hit_count": 4,
+      "miss_count": 1,
+      "eviction_count": 0,
+      "total_size": 1,
+      "max_size": 200,
+      "hit_rate": 0.8,
+      "memory_usage": 0.00045013427734375
+    }
+  },
+  "entries": {
+    "import_result_unknown": {
+      "key": "import_result_unknown",
+      "value": {
+        "module": "",
+        "path": "",
+        "used_fallback": false,
+        "function_mapping_status": "",
+        "required_functions": [],
+        "available_functions": [],
+        "error_code": "PATH_NOT_FOUND",
+        "message": "模块路径不存在: D:\\lad\\LAD_md_ed2\\lad_markdown_viewer2",
+        "import_method": "配置路径导入",
+        "timestamp": "2025-09-04T17:46:31.978957",
+        "function_names": []
+      },
+      "created_time": 1756979191.9789958,
+      "last_access_time": 1756979254.4260998,
+      "access_count": 5,
+      "ttl": 7200,
+      "strategy": "lru",
+      "metadata": {}
+    }
+  }
+}

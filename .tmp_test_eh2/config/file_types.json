@@ -1,0 +1,32 @@
+{
+  "markdown_files": {
+    "extensions": [
+      ".md",
+      ".markdown",
+      ".mdown"
+    ],
+    "renderer": "markdown",
+    "preview_mode": "rendered"
+  },
+  "text_files": {
+    "extensions": [
+      ".txt",
+      ".log",
+      ".ini",
+      ".cfg"
+    ],
+    "renderer": "text",
+    "preview_mode": "raw"
+  },
+  "code_files": {
+    "extensions": [
+      ".py",
+      ".js",
+      ".html",
+      ".css",
+      ".json"
+    ],
+    "renderer": "syntax_highlight",
+    "preview_mode": "highlighted"
+  }
+}

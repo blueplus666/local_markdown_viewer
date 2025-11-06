@@ -1,0 +1,51 @@
+{
+  "markdown_files": {
+    "extensions": [".md", ".markdown", ".mdown", ".mkd"],
+    "renderer": "markdown",
+    "preview_mode": "rendered",
+    "icon": "📝",
+    "description": "Markdown文档"
+  },
+  "text_files": {
+    "extensions": [".txt", ".log", ".ini", ".cfg", ".conf", ".config"],
+    "renderer": "text",
+    "preview_mode": "raw",
+    "icon": "📄",
+    "description": "文本文件"
+  },
+  "code_files": {
+    "extensions": [".py", ".js", ".html", ".css", ".json", ".xml", ".yaml", ".yml"],
+    "renderer": "syntax_highlight",
+    "preview_mode": "highlighted",
+    "icon": "💻",
+    "description": "代码文件"
+  },
+  "data_files": {
+    "extensions": [".csv", ".tsv", ".sql", ".r", ".m", ".mat"],
+    "renderer": "data_viewer",
+    "preview_mode": "table",
+    "icon": "📊",
+    "description": "数据文件"
+  },
+  "image_files": {
+    "extensions": [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"],
+    "renderer": "image_viewer",
+    "preview_mode": "image",
+    "icon": "🖼️",
+    "description": "图片文件"
+  },
+  "binary_files": {
+    "extensions": [".exe", ".dll", ".so", ".dylib", ".bin", ".dat"],
+    "renderer": "binary",
+    "preview_mode": "info_only",
+    "icon": "🔧",
+    "description": "二进制文件"
+  },
+  "archive_files": {
+    "extensions": [".zip", ".rar", ".7z", ".tar", ".gz", ".bz2"],
+    "renderer": "archive",
+    "preview_mode": "list",
+    "icon": "📦",
+    "description": "压缩文件"
+  }
+} 

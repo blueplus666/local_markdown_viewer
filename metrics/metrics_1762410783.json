@@ -1,0 +1,232 @@
+{
+  "cpu_usage": {
+    "definition": {
+      "name": "cpu_usage",
+      "type": "system",
+      "unit": "percentage",
+      "description": "CPU使用率",
+      "tags": {
+        "category": "system",
+        "component": "cpu"
+      },
+      "collection_interval": 5.0
+    },
+    "current_value": {
+      "value": 18.2,
+      "unit": "percentage",
+      "timestamp": 1762410778.4624755,
+      "metadata": null
+    },
+    "min_value": 18.2,
+    "max_value": 18.2,
+    "avg_value": 18.2,
+    "values_count": 1
+  },
+  "memory_usage": {
+    "definition": {
+      "name": "memory_usage",
+      "type": "system",
+      "unit": "percentage",
+      "description": "内存使用率",
+      "tags": {
+        "category": "system",
+        "component": "memory"
+      },
+      "collection_interval": 5.0
+    },
+    "current_value": {
+      "value": 79.9,
+      "unit": "percentage",
+      "timestamp": 1762410778.4632435,
+      "metadata": null
+    },
+    "min_value": 79.9,
+    "max_value": 79.9,
+    "avg_value": 79.9,
+    "values_count": 1
+  },
+  "disk_usage": {
+    "definition": {
+      "name": "disk_usage",
+      "type": "system",
+      "unit": "percentage",
+      "description": "磁盘使用率",
+      "tags": {
+        "category": "system",
+        "component": "disk"
+      },
+      "collection_interval": 30.0
+    },
+    "current_value": {
+      "value": 36.0136475809891,
+      "unit": "percentage",
+      "timestamp": 1762410778.4636252,
+      "metadata": null
+    },
+    "min_value": 36.0136475809891,
+    "max_value": 36.0136475809891,
+    "avg_value": 36.0136475809891,
+    "values_count": 1
+  },
+  "network_io": {
+    "definition": {
+      "name": "network_io",
+      "type": "system",
+      "unit": "bytes",
+      "description": "网络I/O",
+      "tags": {
+        "category": "system",
+        "component": "network"
+      },
+      "collection_interval": 5.0
+    },
+    "current_value": {
+      "value": 9428930693,
+      "unit": "bytes",
+      "timestamp": 1762410778.4801931,
+      "metadata": null
+    },
+    "min_value": 9428930693,
+    "max_value": 9428930693,
+    "avg_value": 9428930693,
+    "values_count": 1
+  },
+  "application_memory": {
+    "definition": {
+      "name": "application_memory",
+      "type": "application",
+      "unit": "bytes",
+      "description": "应用内存使用",
+      "tags": {
+        "category": "application",
+        "component": "memory"
+      },
+      "collection_interval": 5.0
+    },
+    "current_value": {
+      "value": 175345664,
+      "unit": "bytes",
+      "timestamp": 1762410778.480562,
+      "metadata": null
+    },
+    "min_value": 175345664,
+    "max_value": 175345664,
+    "avg_value": 175345664,
+    "values_count": 1
+  },
+  "application_threads": {
+    "definition": {
+      "name": "application_threads",
+      "type": "application",
+      "unit": "count",
+      "description": "应用线程数",
+      "tags": {
+        "category": "application",
+        "component": "threads"
+      },
+      "collection_interval": 5.0
+    },
+    "current_value": {
+      "value": 39,
+      "unit": "count",
+      "timestamp": 1762410778.4901016,
+      "metadata": null
+    },
+    "min_value": 39,
+    "max_value": 39,
+    "avg_value": 39,
+    "values_count": 1
+  },
+  "application_uptime": {
+    "definition": {
+      "name": "application_uptime",
+      "type": "application",
+      "unit": "seconds",
+      "description": "应用运行时间",
+      "tags": {
+        "category": "application",
+        "component": "uptime"
+      },
+      "collection_interval": 60.0
+    },
+    "current_value": {
+      "value": 231.76485347747803,
+      "unit": "seconds",
+      "timestamp": 1762410778.4905252,
+      "metadata": null
+    },
+    "min_value": 231.76485347747803,
+    "max_value": 231.76485347747803,
+    "avg_value": 231.76485347747803,
+    "values_count": 1
+  },
+  "response_time": {
+    "definition": {
+      "name": "response_time",
+      "type": "performance",
+      "unit": "milliseconds",
+      "description": "响应时间",
+      "tags": {
+        "category": "performance",
+        "component": "response"
+      },
+      "collection_interval": 1.0
+    },
+    "current_value": {
+      "value": 44.43069372167691,
+      "unit": "milliseconds",
+      "timestamp": 1762410778.490669,
+      "metadata": null
+    },
+    "min_value": 44.43069372167691,
+    "max_value": 44.43069372167691,
+    "avg_value": 44.43069372167691,
+    "values_count": 1
+  },
+  "throughput": {
+    "definition": {
+      "name": "throughput",
+      "type": "performance",
+      "unit": "requests_per_second",
+      "description": "吞吐量",
+      "tags": {
+        "category": "performance",
+        "component": "throughput"
+      },
+      "collection_interval": 1.0
+    },
+    "current_value": {
+      "value": 180.48435959555582,
+      "unit": "requests_per_second",
+      "timestamp": 1762410778.4910262,
+      "metadata": null
+    },
+    "min_value": 180.48435959555582,
+    "max_value": 180.48435959555582,
+    "avg_value": 180.48435959555582,
+    "values_count": 1
+  },
+  "error_rate": {
+    "definition": {
+      "name": "error_rate",
+      "type": "performance",
+      "unit": "percentage",
+      "description": "错误率",
+      "tags": {
+        "category": "performance",
+        "component": "errors"
+      },
+      "collection_interval": 5.0
+    },
+    "current_value": {
+      "value": 1.4375448926055774,
+      "unit": "percentage",
+      "timestamp": 1762410778.491277,
+      "metadata": null
+    },
+    "min_value": 1.4375448926055774,
+    "max_value": 1.4375448926055774,
+    "avg_value": 1.4375448926055774,
+    "values_count": 1
+  }
+}

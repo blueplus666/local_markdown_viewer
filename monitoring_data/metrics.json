@@ -1,0 +1,19 @@
+{
+  "performance": [
+    "MonitoringMetric(name='response_time', value=0.0, unit='ms', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 276833), tags={'type': 'performance'}, alert_level=<AlertLevel.INFO: 'info'>)",
+    "MonitoringMetric(name='memory_usage', value=80.2, unit='%', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 276833), tags={'type': 'performance'}, alert_level=<AlertLevel.WARNING: 'warning'>)",
+    "MonitoringMetric(name='cpu_usage', value=0.0, unit='%', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 276833), tags={'type': 'performance'}, alert_level=<AlertLevel.INFO: 'info'>)",
+    "MonitoringMetric(name='cache_hit_rate', value=0.0, unit='%', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 276833), tags={'type': 'performance'}, alert_level=<AlertLevel.WARNING: 'warning'>)"
+  ],
+  "error": [
+    "MonitoringMetric(name='error_rate', value=2.5, unit='%', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 277417), tags={'type': 'error'}, alert_level=<AlertLevel.INFO: 'info'>)",
+    "MonitoringMetric(name='error_count', value=0, unit='count', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 277417), tags={'type': 'error'}, alert_level=<AlertLevel.INFO: 'info'>)"
+  ],
+  "log": [
+    "MonitoringMetric(name='log_volume', value=100.0, unit='lines/min', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 277439), tags={'type': 'log'}, alert_level=<AlertLevel.INFO: 'info'>)"
+  ],
+  "system": [
+    "MonitoringMetric(name='disk_usage', value=36.0, unit='%', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 277457), tags={'type': 'system'}, alert_level=<AlertLevel.INFO: 'info'>)",
+    "MonitoringMetric(name='network_io', value=9477924215, unit='bytes', timestamp=datetime.datetime(2025, 11, 6, 14, 50, 42, 277457), tags={'type': 'system'}, alert_level=<AlertLevel.INFO: 'info'>)"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "layout": {
+    "left_panel_width": 300,
+    "right_panel_width": "auto",
+    "splitter_handle_width": 4,
+    "splitter_handle_color": "#cccccc"
+  },
+  "colors": {
+    "primary": "#2196f3",
+    "secondary": "#f5f5f5",
+    "text": "#333333",
+    "background": "#ffffff",
+    "border": "#e0e0e0",
+    "highlight": "#e3f2fd",
+    "error": "#f44336",
+    "success": "#4caf50",
+    "warning": "#ff9800"
+  },
+  "fonts": {
+    "main": "微软雅黑",
+    "code": "Consolas",
+    "size": 14,
+    "code_size": 13
+  },
+  "theme": {
+    "name": "default",
+    "dark_mode": false,
+    "high_contrast": false
+  },
+  "ui_behavior": {
+    "auto_save": true,
+    "show_line_numbers": true,
+    "word_wrap": true,
+    "smooth_scrolling": true
+  },
+  "content_viewer": {
+    "cache_limit": 50,
+    "default_font_size": 14,
+    "default_zoom": 1.44,
+    "max_preview_lines": 1000,
+    "max_preview_size": 5242880,
+    "history_max": 200
+  },
+  "markdown_viewer": {
+    "cache_limit": 50,
+    "default_font_size": 14,
+    "default_zoom": 1.44
+  },
+  "link_debugger": {
+    "history_max": 200
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "task_id": "LAD-IMPL-012",
+  "status": "completed",
+  "session_id": "2025-11-05-17-08-00",
+  "policy": {
+    "check_exists_default": true,
+    "external_url_validation": "always",
+    "config_priority": {
+      "link_processing": ["app.link_processing", "features.link_processing"],
+      "security": ["features.security", "app.security"]
+    }
+  },
+  "artifacts": [
+    {"path": "local_markdown_viewer/utils/config_manager.py", "change": "features 加载与嵌套键支持"},
+    {"path": "local_markdown_viewer/core/link_processor.py", "change": "外链必校验、快照字段修复、策略合并"},
+    {"path": "local_markdown_viewer/ui/content_viewer.py", "change": "单点注入与测试桩/缩放跟踪"},
+    {"path": "local_markdown_viewer/config/features/error_history.json", "change": "新增最小配置"},
+    {"path": "local_markdown_viewer/tests/test_link_processor.py", "change": "适配安全白名单"}
+  ],
+  "tests": {
+    "targeted_pass": [
+      "tests/test_link_processor.py",
+      "tests/test_content_viewer_integration.py::test_link_script_injection",
+      "tests/test_content_viewer.py::TestContentViewer::test_zoom_functionality"
+    ],
+    "known_failures_deferred": [
+      "config/test_config_manager.py::test_basic_config_access",
+      "config/test_config_manager.py::test_config_cache",
+      "tests/test_thread_safety.py::TestThreadSafety::test_cache_atomic_operations",
+      "tests/test_thread_safety.py::TestThreadSafety::test_concurrent_module_updates",
+      "tests/test_thread_safety.py::TestThreadSafety::test_deadlock_detection",
+      "tests/test_thread_safety.py::TestThreadSafety::test_performance_impact",
+      "tests/test_thread_safety.py::TestThreadSafety::test_snapshot_consistency",
+      "tests/test_function_mapping.py::test_missing_functions",
+      "tests/test_function_mapping.py::test_non_callable_functions"
+    ]
+  },
+  "next_tasks": ["LAD-IMPL-013", "pm1", "t1", "fix_tests3", "fix_tests4"],
+  "preconditions_for_013": [
+    "提供 features/security.json 示例并指导配置 allowed_protocols/allowed_domains",
+    "确认前端仅单点注入脚本并保留测试门控（避免生产注释注入）"
+  ]
+}

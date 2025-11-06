@@ -1,0 +1,14 @@
+chore(4.3.4): QA & deploy readiness; finalize Plan-C integration; CI-safe UTF-8 tests
+
+- Move Plan-C modules into project tree (integration/monitoring/benchmarks)
+- main.py reads lad_integration.json; async optional integration & monitoring
+- Unify monitoring outputs to metrics/; add retention_days config
+- Add QA tests: test_qa_minimal.py, test_qa_all.py (UTF-8 enforced)
+- Add 4.3.4 plan/report/checklist/rollback and deploy sample config
+- Fix Windows GBK decode issues in subprocess captures
+
+Alignment:
+- Report includes explicit alignment to `方案4_提示词4.3.4_质量保证与部署实施.md`
+- Predefined Q&A (完整性/深度/质量提升) answered in report
+
+Refs: 4.3.3 → 4.3.4 handover complete; CI gate ready

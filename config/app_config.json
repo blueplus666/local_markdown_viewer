@@ -1,0 +1,142 @@
+{
+  "app": {
+    "name": "本地Markdown文件渲染器",
+    "version": "1.0.0",
+    "description": "基于PyQt5的本地Markdown文件渲染和文档管理工具",
+    "author": "LAD Team",
+    "default_root_path": "D:/lad/LAD_Project",
+    "window": {
+      "width": 800,
+      "height": 600,
+      "min_width": 800,
+      "min_height": 600,
+      "title": "本地Markdown文件渲染器 v1.0.0"
+    }
+  },
+  "file_tree": {
+    "show_hidden_files": false,
+    "file_filters": [
+      "*.md",
+      "*.txt",
+      "*.py",
+      "*.json",
+      "*.html",
+      "*.css",
+      "*.js"
+    ],
+    "exclude_patterns": [
+      "*.log",
+      "*.tmp",
+      "*.bak",
+      "__pycache__",
+      ".git"
+    ],
+    "max_file_size": 10485760,
+    "last_search": ""
+  },
+  "markdown": {
+    "enable_zoom": true,
+    "enable_syntax_highlight": true,
+    "theme": "default",
+    "auto_reload": false,
+    "max_content_length": 5242880,
+    "use_dynamic_import": true,
+    "fallback_enabled": true,
+    "cache_enabled": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "app.log",
+    "max_size": 10485760,
+    "backup_count": 5,
+    "correlation_id_enabled": true,
+    "file_path": "logs/lad_markdown_viewer.log"
+  },
+  "link_processing": {
+    "enabled": true,
+    "relative_paths": true,
+    "external_links": true,
+    "image_links": true,
+    "mermaid_links": true,
+    "file_protocol": true,
+    "cache_enabled": true,
+    "cache_size": 1000,
+    "error_handling": "strict",
+    "windows_specific": {
+      "drive_letters": [
+        "C:",
+        "D:",
+        "E:"
+      ],
+      "path_separator": "\\",
+      "max_path_depth": 5
+    },
+    "security": {
+      "enable_whitelist": true,
+      "allowed_domains": [
+        "github.com",
+        "stackoverflow.com"
+      ],
+      "forbidden_patterns": [
+        "../..",
+        "~",
+        "/etc"
+      ],
+      "allowed_protocols": [
+        "http",
+        "https",
+        "file"
+      ]
+    },
+    "logging": {
+      "enabled": true,
+      "level": "INFO",
+      "permission_errors": true,
+      "access_logs": true
+    }
+  },
+  "ui": {
+    "status_bar_messages": {
+      "complete": {
+        "text": "✅ 模块就绪，所有功能可用",
+        "timeout": 0,
+        "show_module_version": true
+      },
+      "incomplete": {
+        "text": "⚠️ 模块部分可用",
+        "timeout": 0,
+        "show_missing_functions": true
+      },
+      "import_failed": {
+        "text": "❌ 模块导入失败",
+        "timeout": 0,
+        "show_error_code": true
+      }
+    },
+    "status_bar_update_interval_ms": 5000
+  },
+  "error_handling": {
+    "strategy": "graceful",
+    "log_errors": true,
+    "max_error_history": 200,
+    "error_codes": {
+      "modules": "M001-M099",
+      "rendering": "R001-R099",
+      "linking": "L001-L099",
+      "system": "S001-S099"
+    }
+  },
+  "performance": {
+    "monitoring": {
+      "collect_memory": true,
+      "collect_cpu": true,
+      "collect_timing": true,
+      "sample_interval_ms": 1000
+    },
+    "thresholds": {
+      "status_bar_update_ms": 100,
+      "memory_warning_mb": 150,
+      "cpu_warning_percent": 70
+    }
+  }
+}

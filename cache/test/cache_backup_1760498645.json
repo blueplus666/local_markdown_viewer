@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-10-15T11:24:05.581709",
+    "strategy": "lfu",
+    "max_size": 100,
+    "stats": {
+      "total_entries": 2,
+      "hit_count": 3,
+      "miss_count": 1,
+      "eviction_count": 1,
+      "total_size": 2,
+      "max_size": 100,
+      "hit_rate": 1.0,
+      "memory_usage": 0.000247955322265625
+    }
+  },
+  "entries": {
+    "test_key_2": {
+      "key": "test_key_2",
+      "value": {
+        "data": "test_value_2"
+      },
+      "created_time": 1760498638.5792727,
+      "last_access_time": 1760498638.5792906,
+      "access_count": 2,
+      "ttl": 60,
+      "strategy": "lfu",
+      "metadata": {}
+    },
+    "test_key_1": {
+      "key": "test_key_1",
+      "value": "test_value_1",
+      "created_time": 1760498638.579252,
+      "last_access_time": 1760498638.579358,
+      "access_count": 3,
+      "ttl": 30,
+      "strategy": "lfu",
+      "metadata": {}
+    }
+  }
+}

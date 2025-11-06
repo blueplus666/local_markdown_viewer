@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-11-06T14:50:42.292927",
+  "summary": {
+    "performance": {
+      "response_time": 0.0,
+      "memory_usage": 80.2,
+      "cpu_usage": 0.0,
+      "cache_hit_rate": 0.0
+    },
+    "error": {
+      "error_rate": 2.5,
+      "error_count": 0.0
+    },
+    "log": {
+      "log_volume": 100.0
+    },
+    "system": {
+      "disk_usage": 36.0,
+      "network_io": 9477924215.0
+    }
+  },
+  "trends": {},
+  "recommendations": []
+}

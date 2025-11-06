@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-10-14T11:40:15.495795",
+    "strategy": "lru",
+    "max_size": 500,
+    "stats": {
+      "total_entries": 2,
+      "hit_count": 0,
+      "miss_count": 1,
+      "eviction_count": 0,
+      "total_size": 2,
+      "max_size": 500,
+      "hit_rate": 0.0,
+      "memory_usage": 0.0022678375244140625
+    }
+  },
+  "entries": {
+    "last_render_snapshot": {
+      "key": "last_render_snapshot",
+      "value": {
+        "renderer_type": "markdown_library",
+        "reason": "使用备用库渲染（fallback到markdown）",
+        "details": {
+          "module": "markdown",
+          "fallback": true
+        },
+        "used_fallback": true,
+        "module": "markdown",
+        "path": "builtin"
+      },
+      "created_time": 1760413203.6733108,
+      "last_access_time": 1760413203.6733112,
+      "access_count": 1,
+      "ttl": 3600,
+      "strategy": "lru",
+      "metadata": {}
+    },
+    "87049e591836f2f87a53e8baece004c0": {
+      "key": "87049e591836f2f87a53e8baece004c0",
+      "value": {
+        "success": true,
+        "html": "\n        <style>\n            body { font-family: '微软雅黑', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }\n            h1, h2, h3, h4, h5, h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; }\n            p { margin-bottom: 16px; }\n            code { background: #f6f8fa; padding: 2px 4px; border-radius: 3px; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; }\n            pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow: auto; margin-bottom: 16px; }\n            table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }\n            th, td { border: 1px solid #d0d7de; padding: 8px 12px; text-align: left; }\n            th { background: #f6f8fa; font-weight: 600; }\n            blockquote { border-left: 4px solid #d0d7de; padding-left: 16px; margin: 16px 0; color: #656d76; }\n        </style>\n        \n<h1 id=\"markdown\">测试Markdown文件</h1>\n<p>这是一个测试文件。</p>\n<h2 id=\"_1\">代码示例</h2>\n<div class=\"codehilite\"><pre><span></span><code><span class=\"k\">def</span><span class=\"w\"> </span><span class=\"nf\">hello</span><span class=\"p\">():</span>\n    <span class=\"nb\">print</span><span class=\"p\">(</span><span class=\"s2\">&quot;Hello, World!&quot;</span><span class=\"p\">)</span>\n</code></pre></div>\n\n<h2 id=\"_2\">列表</h2>\n<ul>\n<li>项目1</li>\n<li>项目2</li>\n<li>项目3</li>\n</ul>",
+        "renderer": "markdown_library",
+        "renderer_details": "备用库渲染（fallback到markdown）",
+        "options_used": {
+          "enable_zoom": true,
+          "enable_syntax_highlight": true,
+          "theme": "default",
+          "max_content_length": 5242880,
+          "cache_enabled": true,
+          "fallback_to_text": true,
+          "use_dynamic_import": true,
+          "base_url": "C:\\Users\\kkk\\AppData\\Local\\Temp\\tmpsd6ohyln",
+          "fallback_enabled": true
+        },
+        "render_time": 0.004159688949584961
+      },
+      "created_time": 1760413203.6773615,
+      "last_access_time": 1760413203.6773617,
+      "access_count": 1,
+      "ttl": 3600,
+      "strategy": "lru",
+      "metadata": {}
+    }
+  }
+}

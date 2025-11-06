@@ -1,0 +1,137 @@
+{
+  "task_set_id": "LAD-IMPL-007-V4.2",
+  "tasks": [
+    {
+      "step_id": "S00",
+      "title": "步骤0：精读架构文档",
+      "ref_section": "## 步骤0（架构学习）",
+      "target_files": [],
+      "expected_artifacts": ["理解检查回答.txt"],
+      "rollback_diff": "rollback_diffs/S00.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S01",
+      "title": "步骤1：执行前验证",
+      "ref_section": "## 步骤1：执行前验证",
+      "target_files": [],
+      "expected_artifacts": ["config/test_config_manager.py","config/test_006a_integration.py","test_architecture_alignment.py"],
+      "rollback_diff": "rollback_diffs/S01.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S02",
+      "title": "步骤2：分析现有UI",
+      "ref_section": "## 步骤2：分析现有UI",
+      "target_files": ["D:/lad/LAD_md_ed2/local_markdown_viewer/ui/main_window.py"],
+      "expected_artifacts": ["ui_analysis_notes.txt"],
+      "rollback_diff": "rollback_diffs/S02.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S03",
+      "title": "步骤3：创建CorrelationIdManager",
+      "ref_section": "## 步骤3：CorrelationIdManager",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/core/correlation_id_manager.py"
+      ],
+      "expected_artifacts": ["tests/test_correlation_id_manager.py"],
+      "rollback_diff": "rollback_diffs/S03.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S04",
+      "title": "步骤4：创建事件系统",
+      "ref_section": "## 步骤4：创建事件系统",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/ui/status_events.py"
+      ],
+      "expected_artifacts": ["tests/test_status_event_emitter.py"],
+      "rollback_diff": "rollback_diffs/S04.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S05",
+      "title": "步骤5：DynamicModuleImporter新增方法与快照格式",
+      "ref_section": "## 步骤5：DynamicModuleImporter更新",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/core/dynamic_module_importer.py",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/core/snapshot_manager.py"
+      ],
+      "expected_artifacts": ["tests/test_snapshot_format_alignment.py"],
+      "rollback_diff": "rollback_diffs/S05.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S06",
+      "title": "步骤6：MainWindow集成（状态栏/事件/ID传播）",
+      "ref_section": "## 步骤6：MainWindow集成",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/ui/main_window.py",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/ui/status_events.py"
+      ],
+      "expected_artifacts": ["tests/test_ui_mapping_rules.py"],
+      "rollback_diff": "rollback_diffs/S06.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S07",
+      "title": "步骤7：配置文件准备",
+      "ref_section": "## 步骤7：配置文件准备",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/config/app_config.json",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/config/ui_config.json"
+      ],
+      "expected_artifacts": ["config/app_config.json","config/ui_config.json"],
+      "rollback_diff": "rollback_diffs/S07.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S08",
+      "title": "步骤8：单元测试",
+      "ref_section": "## 步骤8：单元测试",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/tests/test_snapshot_format_alignment.py",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/tests/test_correlation_id_manager.py",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/tests/test_ui_mapping_rules.py",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/tests/test_status_events.py"
+      ],
+      "expected_artifacts": ["pytest_report.txt"],
+      "rollback_diff": "rollback_diffs/S08.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S09",
+      "title": "步骤9：集成测试",
+      "ref_section": "## 步骤9：集成测试",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/tests/test_007_integration.py",
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/tests/test_correlation_id_propagation.py"
+      ],
+      "expected_artifacts": ["pytest_integration_report.txt"],
+      "rollback_diff": "rollback_diffs/S09.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S10",
+      "title": "步骤10：架构对齐验证",
+      "ref_section": "## 步骤10：架构对齐验证",
+      "target_files": [
+        "D:/lad/LAD_md_ed2/local_markdown_viewer/docs/LAD-IMPL-007-V4.2-测试用例和架构验证.md"
+      ],
+      "expected_artifacts": ["architecture_alignment_checklist.xlsx"],
+      "rollback_diff": "rollback_diffs/S10.diff",
+      "status": "completed"
+    },
+    {
+      "step_id": "S11",
+      "title": "步骤11：性能测试",
+      "ref_section": "## 步骤11：性能测试",
+      "target_files": [],
+      "expected_artifacts": ["performance_test_report.txt"],
+      "rollback_diff": "rollback_diffs/S11.diff",
+      "status": "completed"
+    }
+  ]
+}
+

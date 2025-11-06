@@ -1,0 +1,11 @@
+{
+  "error_history": {
+    "enabled": true,
+    "database_path": "D:\\lad\\LAD_md_ed2\\local_markdown_viewer\\.tmp_test_eh2\\error_history_test2.db",
+    "retention_days": 1,
+    "auto_cleanup": false,
+    "cleanup_schedule": "@every 10s",
+    "max_connections": 5,
+    "timeout_seconds": 30
+  }
+}

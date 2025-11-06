@@ -1,0 +1,20 @@
+{
+  "monitoring": {
+    "enabled": false,
+    "interval_seconds": 60,
+    "metrics_retention_days": 7
+  },
+  "thresholds": {
+    "memory_warning_mb": 500,
+    "memory_critical_mb": 1000,
+    "cpu_warning_percent": 80,
+    "cpu_critical_percent": 95
+  },
+  "alerts": {
+    "enable_notifications": false,
+    "notification_methods": [
+      "log",
+      "console"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "external_modules": {
+    "markdown_processor": {
+      "enabled": true,
+      "module_path": "D:\\lad\\LAD_md_ed2\\lad_markdown_viewer",
+      "version": "1.0.0",
+      "priority": 1,
+      "required_functions": [
+        "render_markdown_with_zoom",        
+        "render_markdown_to_html"
+      ],
+      "fallback_enabled": true,
+      "description": "LAD Markdown处理器模块，提供增强的渲染功能"
+    }
+  },
+  "import_settings": {
+    "use_temporary_path": true,
+    "cleanup_after_import": true,
+    "validate_functions": true,
+    "log_import_attempts": true
+  },
+  "fallback_settings": {
+    "enable_fallback": true,
+    "fallback_strategy": "markdown",
+    "log_fallback_usage": true
+  }
+}

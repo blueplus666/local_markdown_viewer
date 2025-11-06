@@ -1,0 +1,14 @@
+{
+  "python": {
+    "extensions": [".py"],
+    "renderer": "syntax_highlight",
+    "preview_mode": "code",
+    "encoding": "utf-8"
+  },
+  "javascript": {
+    "extensions": [".js"],
+    "renderer": "syntax_highlight",
+    "preview_mode": "code",
+    "encoding": "utf-8"
+  }
+}

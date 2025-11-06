@@ -1,0 +1,42 @@
+============================================================
+ConfigManager V2.1 Test Suite
+============================================================
+
+==================================================
+Test 1: Basic Config Access
+==================================================
+[OK] _app_config access: 鏈湴Markdown鏂囦欢娓叉煋鍣?
+[OK] get_config('app.name'): 鏈湴Markdown鏂囦欢娓叉煋鍣?
+
+[OK] Test 1 passed
+
+==================================================
+Test 2: Unified Config Access
+==================================================
+[OK] get_unified_config('app.name'): 鏈湴Markdown鏂囦欢娓叉煋鍣?
+[OK] get_unified_config('app.window.width'): 800
+[OK] get_unified_config('external_modules...'): enabled=True
+[OK] get_unified_config('ui.layout...'): 289
+
+[OK] Test 2 passed
+
+==================================================
+Test 3: External Module Config
+==================================================
+[OK] Field 'enabled': True
+[OK] Field 'module_path': D:\lad\LAD_md_ed2\lad_markdown_viewer
+[OK] Field 'version': 1.0.0
+[OK] Field 'required_functions': ['render_markdown_with_zoom', 'render_markdown_to_html']
+
+[OK] Test 3 passed
+
+============================================================
+Test Results Summary
+============================================================
+
+Passed: 3/3
+[OK] Basic Access
+[OK] Unified Access
+[OK] Module Config
+
+[SUCCESS] All tests passed!

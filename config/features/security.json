@@ -1,0 +1,9 @@
+{
+  "allowed_protocols": ["https"],
+  "allowed_domains": ["example.com"],
+  "forbidden_patterns": [],
+  "windows_specific": {
+    "drive_letters": [],
+    "max_path_depth": 32
+  }
+}

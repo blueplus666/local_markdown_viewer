@@ -1,0 +1,62 @@
+{
+  "app": {
+    "name": "本地Markdown文件渲染器",
+    "version": "2.0.0",
+    "description": "基于PyQt5的本地Markdown文件渲染和文档管理工具（混合架构版本）",
+    "author": "LAD Team",
+    "default_root_path": "D:/lad/LAD_Project",
+    "window": {
+      "width": 1920,
+      "height": 974,
+      "min_width": 800,
+      "min_height": 600,
+      "title": "本地Markdown文件渲染器 v2.0.0"
+    }
+  },
+  "file_tree": {
+    "show_hidden_files": false,
+    "file_filters": [
+      "*.md",
+      "*.txt",
+      "*.py",
+      "*.json",
+      "*.html",
+      "*.css",
+      "*.js"
+    ],
+    "exclude_patterns": [
+      "*.log",
+      "*.tmp",
+      "*.bak",
+      "__pycache__",
+      ".git"
+    ],
+    "max_file_size": 10485760,
+    "last_search": ""
+  },
+  "external_modules": {
+    "markdown_processor": {
+      "module_path": "../../../lad_markdown_viewer",
+      "enabled": true,
+      "version": "1.0.0",
+      "description": "高级Markdown渲染处理器，支持图片缩放和Mermaid图表",
+      "priority": 1
+    }
+  },
+  "markdown": {
+    "enable_zoom": true,
+    "enable_syntax_highlight": true,
+    "theme": "default",
+    "auto_reload": false,
+    "max_content_length": 5242880,
+    "use_dynamic_import": true,
+    "fallback_enabled": true,
+    "cache_enabled": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "app.log",
+    "max_size": 10485760,
+    "backup_count": 5
+  }
+} 

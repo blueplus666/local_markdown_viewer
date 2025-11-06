@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_time": "2025-10-14T12:07:26.469101",
+    "strategy": "lru",
+    "max_size": 500,
+    "stats": {
+      "total_entries": 1,
+      "hit_count": 0,
+      "miss_count": 0,
+      "eviction_count": 0,
+      "total_size": 1,
+      "max_size": 500,
+      "hit_rate": 0.0,
+      "memory_usage": 0.0003204345703125
+    }
+  },
+  "entries": {
+    "last_render_snapshot": {
+      "key": "last_render_snapshot",
+      "value": {
+        "renderer_type": "markdown_library",
+        "reason": "使用备用库渲染（fallback到markdown）",
+        "details": {
+          "module": "markdown",
+          "fallback": true
+        },
+        "used_fallback": true,
+        "module": "markdown",
+        "path": "builtin"
+      },
+      "created_time": 1760414835.4652627,
+      "last_access_time": 1760414835.4652627,
+      "access_count": 1,
+      "ttl": 3600,
+      "strategy": "lru",
+      "metadata": {}
+    }
+  }
+}

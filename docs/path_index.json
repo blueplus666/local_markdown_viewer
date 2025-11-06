@@ -1,0 +1,22 @@
+{
+  "docs_root": "D:/lad/LAD_md_ed2/local_markdown_viewer/docs",
+  "code_root": "D:/lad/LAD_md_ed2/local_markdown_viewer",
+  "docs": {
+    "main": "D:/lad/LAD_md_ed2/local_markdown_viewer/docs/LAD-IMPL-007-UI状态栏更新-完整提示词V4.2-架构对齐版-主文档.md",
+    "appendix_a": "D:/lad/LAD_md_ed2/local_markdown_viewer/docs/LAD-IMPL-007-V4.2-附录A-核心组件完整代码.md",
+    "appendix_b": "D:/lad/LAD_md_ed2/local_markdown_viewer/docs/LAD-IMPL-007-V4.2-附录B-UI组件完整代码.md",
+    "tests": "D:/lad/LAD_md_ed2/local_markdown_viewer/docs/LAD-IMPL-007-V4.2-测试用例和架构验证.md"
+  },
+  "code": {
+    "correlation_id_manager": "D:/lad/LAD_md_ed2/local_markdown_viewer/core/correlation_id_manager.py",
+    "status_events": "D:/lad/LAD_md_ed2/local_markdown_viewer/ui/status_events.py",
+    "dynamic_module_importer": "D:/lad/LAD_md_ed2/local_markdown_viewer/core/dynamic_module_importer.py",
+    "snapshot_manager": "D:/lad/LAD_md_ed2/local_markdown_viewer/core/snapshot_manager.py",
+    "main_window": "D:/lad/LAD_md_ed2/local_markdown_viewer/ui/main_window.py",
+    "error_code_manager": "D:/lad/LAD_md_ed2/local_markdown_viewer/core/error_code_manager.py",
+    "performance_metrics": "D:/lad/LAD_md_ed2/local_markdown_viewer/core/performance_metrics.py",
+    "app_config": "D:/lad/LAD_md_ed2/local_markdown_viewer/config/app_config.json",
+    "ui_config": "D:/lad/LAD_md_ed2/local_markdown_viewer/config/ui_config.json"
+  }
+}
+

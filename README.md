@@ -1,6 +1,6 @@
 # 本地Markdown文件渲染器
  
-[![Python Tests](https://github.com/kevinguo8888/lad_markdown_viewer/actions/workflows/python-tests.yml/badge.svg)](https://github.com/kevinguo8888/lad_markdown_viewer/actions/workflows/python-tests.yml)
+[![Python Tests](https://github.com/kevinguo8888/local_markdown_viewer/actions/workflows/python-tests.yml/badge.svg)](https://github.com/kevinguo8888/local_markdown_viewer/actions/workflows/python-tests.yml)
 
 ## 项目简介
 

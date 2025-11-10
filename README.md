@@ -1,8 +1,14 @@
 # 本地Markdown文件渲染器
+ 
+[![Python Tests](https://github.com/kevinguo8888/lad_markdown_viewer/actions/workflows/python-tests.yml/badge.svg)](https://github.com/kevinguo8888/lad_markdown_viewer/actions/workflows/python-tests.yml)
 
 ## 项目简介
 
 基于PyQt5的本地Markdown文件渲染和文档管理工具，支持多种文件类型的预览和渲染。
+
+## 快速链接
+
+- [013 测试门控与运行指南](docs/013-测试门控与运行指南.md)
 
 ## 功能特性
 
@@ -149,6 +155,44 @@ local_markdown_viewer/
 4. 推送到分支
 5. 创建 Pull Request
 
+### PyQt 测试初始化与降噪指南
+
+- 统一初始化策略
+  - 测试会话启动时自动构造 `QApplication([])`，避免在未构造 QApplication 前创建 `QWidget/QMainWindow`。
+  - 使用 `QT_QPA_PLATFORM=offscreen` 以支持无头/CI 环境。
+  - 采用 `QT_LOGGING_RULES="*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"` 降低 Qt 控制台噪声。
+- 本地与 CI 一致化
+  - 已在 `tests/conftest.py` 中统一设置上述策略。
+  - `run_pytests.ps1` 默认设置 `offscreen` 与 `QT_LOGGING_RULES`，并开启 `-W error` 门禁（警告即错误）。
+- 兼容性与提示
+  - 个别 Qt 运行时提示（如字体目录缺失）可能直接输出到 stderr，非 Python 警告，不影响 `-W error`；如需进一步静音，可在环境层面补充字体或调整日志规则。
+
+### 013 测试门控与运行指南
+
+- 门控变量
+  - 通过环境变量 `LAD_RUN_013_TESTS=1` 解禁 013 分组用例；默认不启用（门控关闭）。
+- 脚本支持
+  - `run_pytests.ps1` 新增参数 `-Enable013`，启用后自动导出 `LAD_RUN_013_TESTS=1`。
+  - `scripts/run_full_mode_tests.ps1` 新增参数 `-Enable013`，用于全模式/集成验证时解禁 013 用例。
+  - 两个脚本均统一设置：`QT_QPA_PLATFORM=offscreen` 与 `QT_LOGGING_RULES="*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"`，保证本地与 CI 行为一致。
+- 直接运行示例（PowerShell）
+  - 单次解禁运行：
+    ```powershell
+    $env:LAD_RUN_013_TESTS="1"; $env:LAD_TEST_MODE="1"; $env:QT_QPA_PLATFORM="offscreen";
+    $env:QT_LOGGING_RULES="*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false";
+    python -u -m pytest -vv -W error -s tests/test_link_processor_external.py
+    ```
+  - 脚本方式：
+    ```powershell
+    # 常规回归
+    ./run_pytests.ps1 -Enable013
+    
+    # 全模式关键用例集
+    ./scripts/run_full_mode_tests.ps1 -Enable013
+    ```
+  
+注：日志中可能偶见类似 “This plugin does not support createPlatformOpenGLContext!” 的 Qt 插件自带提示，该类输出为底层 stderr 提示，非 Python 警告，不受 `-W error` 门禁影响；已通过 `offscreen` 和 `QT_LOGGING_RULES` 最大化降噪，通常可忽略。
+
 ## 许可证
 
 本项目采用 MIT 许可证。
@@ -207,3 +251,7 @@ AI 生成代码时应将该注释视作"范式提示"，优先遵循当前模块
 
 ### 详细变更记录
 请参见 [CHANGELOG.md](CHANGELOG.md) 和 [2025-09-01工作总结报告.md](docs/2025-09-01工作总结报告.md) 
+
+## 历史发布
+
+- [v2025.11.06](https://github.com/kevinguo8888/lad_markdown_viewer/releases/tag/v2025.11.06) - Warnings as Errors 门禁落地（321 passed, 0 failed）

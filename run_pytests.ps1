@@ -4,6 +4,7 @@ param(
   [string]$Python      = "python",
   [string]$TestPath    = "tests",
   [string[]]$PytestArgs = @("-vv","-s","-W","error"),
+  [switch]$Enable013,
   [switch]$OpenTailWindow,
   [int]$TailLines = 100
 )
@@ -24,6 +25,10 @@ $env:PYTEST_PROGRESS_LOG = $progressLog
 $env:LAD_TEST_MODE = "1"
 $env:PYTHONUTF8 = "1"
 $env:PYTHONIOENCODING = "utf-8"
+# 统一设置 Qt 无头平台与日志降噪（便于 CI/本地一致）
+$env:QT_QPA_PLATFORM = "offscreen"
+$env:QT_LOGGING_RULES = "*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"
+if ($Enable013) { $env:LAD_RUN_013_TESTS = "1" }
 try {
   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 } catch {

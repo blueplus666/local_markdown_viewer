@@ -25,8 +25,8 @@ jobs:
         shell: pwsh
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest pytest-xdist pytest-timeout pytest-reportlog
+          python -m pip install -r requirements.txt
+          python -m pip install pytest pytest-xdist pytest-timeout pytest-reportlog
 
       - name: Show environment info
         shell: pwsh
@@ -36,6 +36,17 @@ jobs:
           pip list
           Get-Location
           dir
+
+      - name: Verify psutil version
+        shell: pwsh
+        run: |
+          python -c "import psutil; print('psutil version:', psutil.__version__)"
+
+      - name: Collect tests only (debug)
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          python -m pytest -vv -s --collect-only tests *>&1 | Tee-Object -FilePath collect_output.txt
 
       - name: Run tests (013 gated OFF)
         shell: pwsh
@@ -50,6 +61,7 @@ jobs:
             pytest_run_*.log
             pytest_progress_*.log
             pytest_progress.log
+            collect_output.txt
           if-no-files-found: ignore
           retention-days: 7
 

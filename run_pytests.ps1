@@ -26,9 +26,13 @@ $env:LAD_TEST_MODE = "1"
 $env:PYTHONUTF8 = "1"
 $env:PYTHONIOENCODING = "utf-8"
 # 统一设置 Qt 无头平台与日志降噪（便于 CI/本地一致）
-$env:QT_QPA_PLATFORM = "offscreen"
+Remove-Item Env:QT_QPA_PLATFORM -ErrorAction SilentlyContinue
 $env:QT_LOGGING_RULES = "*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"
-if ($Enable013) { $env:LAD_RUN_013_TESTS = "1" }
+if ($Enable013) { $env:LAD_RUN_013_TESTS = "1" } else { $env:LAD_RUN_013_TESTS = "0" }
+$env:QT_OPENGL = "software"
+$env:QTWEBENGINE_DISABLE_SANDBOX = "1"
+$env:QTWEBENGINE_CHROMIUM_FLAGS = "--no-sandbox --disable-gpu --single-process"
+if ($env:WINDIR) { $env:QT_QPA_FONTDIR = (Join-Path $env:WINDIR 'Fonts') }
 try {
   [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 } catch {
@@ -45,9 +49,12 @@ if ($OpenTailWindow) {
 Push-Location $ProjectRoot
 try {
   $pytestCmd = @("-u","-m","pytest") + $PytestArgs + @($TestPath)
+  $ErrorActionPreference = "Continue"
+  try { $global:PSNativeCommandUseErrorActionPreference = $false } catch {}
   # 实时显示 + 写入运行日志
   & $Python $pytestCmd *>&1 | Tee-Object -FilePath $runLog
   $exitCode = $LASTEXITCODE
+  $ErrorActionPreference = "Stop"
 }
 finally {
   Pop-Location

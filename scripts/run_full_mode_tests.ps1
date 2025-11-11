@@ -18,9 +18,13 @@ try {
   $env:PYTHONUTF8 = "1"
   $env:PYTHONIOENCODING = "utf-8"
   # Qt offscreen & logging noise suppression for CI/local consistency
-  $env:QT_QPA_PLATFORM = "offscreen"
+  Remove-Item Env:QT_QPA_PLATFORM -ErrorAction SilentlyContinue
   $env:QT_LOGGING_RULES = "*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"
   if ($Enable013) { $env:LAD_RUN_013_TESTS = "1" }
+  $env:QT_OPENGL = "software"
+  $env:QTWEBENGINE_DISABLE_SANDBOX = "1"
+  $env:QTWEBENGINE_CHROMIUM_FLAGS = "--no-sandbox --disable-gpu --single-process"
+  if ($env:WINDIR) { $env:QT_QPA_FONTDIR = (Join-Path $env:WINDIR 'Fonts') }
 
   # Tests that should run in full mode to cover threads/IO/long waits
   $tests = @(
@@ -36,13 +40,18 @@ try {
     "tests\test_qa_all.py::test_run_validation_suite"
   )
 
-  $args = @("-m","pytest")
-  if ($Quiet) { $args += "-q" } else { $args += "-vv"; $args += "-s"; $args += "-ra" }
-  $args += $tests
+  $pytestArgs = @("-m","pytest")
+  if ($Quiet) { $pytestArgs += "-q" } else { $pytestArgs += "-vv"; $pytestArgs += "-s"; $pytestArgs += "-ra" }
+  $pytestArgs += "-W"; $pytestArgs += "error"
+  $pytestArgs += $tests
 
   Write-Host "Running FULL-MODE tests (fast mode OFF) at $root" -ForegroundColor Cyan
-  & $Python @args
-  exit $LASTEXITCODE
+  $ErrorActionPreference = "Continue"
+  try { $global:PSNativeCommandUseErrorActionPreference = $false } catch {}
+  & $Python @pytestArgs
+  $code = $LASTEXITCODE
+  $ErrorActionPreference = "Stop"
+  exit $code
 }
 finally {
   Pop-Location

@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QSettings, QByteArray
 from PyQt5.QtGui import QFont, QColor
+import builtins
 
 from ..core.manager import ErrorHistoryManager
 
@@ -497,7 +498,7 @@ class AnalysisPanel(QWidget):
             )
 
             if filename:
-                with open(filename, 'w', encoding='utf-8') as f:
+                with builtins.open(filename, 'w', encoding='utf-8') as f:
                     f.write(self.results_text.toPlainText())
 
                 QMessageBox.information(self, "导出成功",

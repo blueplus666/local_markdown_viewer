@@ -15,6 +15,7 @@ import time
 import json
 import logging
 import logging.handlers
+import builtins
 from pathlib import Path
 from typing import Dict, Any, Optional, Union, List, Callable
 from dataclasses import dataclass, asdict
@@ -201,6 +202,7 @@ class UnifiedLoggingFramework:
         self.max_file_size = max_file_size
         self.backup_count = backup_count
         self.enable_performance_monitoring = enable_performance_monitoring
+        self._fast_mode = (os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1")
         
         # 日志目录
         if log_dir is None:
@@ -240,7 +242,7 @@ class UnifiedLoggingFramework:
         self._setup_logging_system()
         
         # 启动性能监控线程
-        if self.enable_performance_monitoring:
+        if self.enable_performance_monitoring and not self._fast_mode:
             self._start_performance_monitoring()
         
         self.logger.info("统一日志框架初始化完成")
@@ -489,7 +491,7 @@ class UnifiedLoggingFramework:
             if output_file is None:
                 output_file = self.log_dir / f"exported_logs_{int(time.time())}.log"
             
-            with open(output_file, 'w', encoding='utf-8') as f:
+            with builtins.open(output_file, 'w', encoding='utf-8') as f:
                 f.writelines(exported_logs)
             
             return f"日志导出完成，共{len(exported_logs)}行，保存到: {output_file}"

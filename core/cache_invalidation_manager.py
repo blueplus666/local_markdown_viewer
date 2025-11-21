@@ -20,6 +20,7 @@ from enum import Enum
 import threading
 import json
 import os
+import builtins
 
 
 class InvalidationStrategy(Enum):
@@ -482,7 +483,7 @@ class CacheInvalidationManager:
                 }
             }
             
-            with open(filepath, 'w', encoding='utf-8') as f:
+            with builtins.open(filepath, 'w', encoding='utf-8') as f:
                 json.dump(config_data, f, indent=2, ensure_ascii=False)
             
             self.logger.info(f"失效配置已保存: {filepath}")

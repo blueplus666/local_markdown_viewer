@@ -9,6 +9,7 @@ import json
 import sys
 from pathlib import Path
 from datetime import datetime
+import builtins
 
 # 添加项目路径
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -48,12 +49,12 @@ def generate_config_validation_report(output_dir: str = None):
     
     # 保存JSON报告
     json_report_path = output_path / "config_validation_report.json"
-    with open(json_report_path, 'w', encoding='utf-8') as f:
+    with builtins.open(json_report_path, 'w', encoding='utf-8') as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
     
     # 生成Markdown摘要
     md_report_path = output_path / "config_validation_report.md"
-    with open(md_report_path, 'w', encoding='utf-8') as f:
+    with builtins.open(md_report_path, 'w', encoding='utf-8') as f:
         f.write("# LAD-IMPL-009 配置验证报告\n\n")
         f.write(f"**生成时间**: {report['generated_at']}\n\n")
         

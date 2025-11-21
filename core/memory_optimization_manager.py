@@ -154,6 +154,7 @@ class MemoryOptimizationManager:
             monitoring_interval: 监控间隔（秒）
         """
         self.logger = logging.getLogger(__name__)
+        self._fast_mode = (os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1")
         self.strategy = strategy
         self.monitoring_interval = monitoring_interval
         
@@ -162,12 +163,12 @@ class MemoryOptimizationManager:
             max_size=500,  # 较小的缓存大小
             default_ttl=1800,  # 30分钟过期
             strategy=CacheStrategy.LRU,
-            cache_dir=Path(__file__).parent.parent / "cache" / "memory"
+            cache_dir=(None if getattr(self, "_fast_mode", False) else Path(__file__).parent.parent / "cache" / "memory")
         )
         
         # 增强错误处理器
         self.error_handler = EnhancedErrorHandler(
-            error_log_dir=Path(__file__).parent.parent / "logs" / "errors",
+            error_log_dir=(None if getattr(self, "_fast_mode", False) else Path(__file__).parent.parent / "logs" / "errors"),
             max_error_history=100
         )
         
@@ -206,6 +207,8 @@ class MemoryOptimizationManager:
     
     def _start_memory_monitor(self):
         """启动内存监控"""
+        if getattr(self, "_fast_mode", False):
+            return
         if self.memory_monitor_thread is None or not self.memory_monitor_thread.is_alive():
             self.monitoring_running = True
             self.memory_monitor_thread = threading.Thread(target=self._memory_monitor_worker, daemon=True)
@@ -589,7 +592,8 @@ class MemoryOptimizationManager:
             # 停止内存监控
             self.monitoring_running = False
             if self.memory_monitor_thread and self.memory_monitor_thread.is_alive():
-                self.memory_monitor_thread.join(timeout=5)
+                _t = 0.2 if getattr(self, "_fast_mode", False) else 5
+                self.memory_monitor_thread.join(timeout=_t)
             
             # 关闭缓存管理器
             self.cache_manager.shutdown()

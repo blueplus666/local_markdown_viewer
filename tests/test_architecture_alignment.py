@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import json
+import os
 import unittest
 from pathlib import Path
 
@@ -13,9 +14,12 @@ from core.snapshot_manager import SnapshotManager
 from core.correlation_id_manager import CorrelationIdManager
 from utils.config_manager import ConfigManager
 from ui.status_events import StatusEventEmitter, StatusChangeEvent
+from tests.test_session_setup import ensure_qapp
+ensure_qapp()
 from ui.main_window import MainWindow
 
 from tests._utils import get_qapp
+from PyQt5.QtWidgets import QApplication
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,7 +124,15 @@ class TestStatusEventAlignment(unittest.TestCase):
 class TestUiMappingAlignment(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        get_qapp()
+        try:
+            os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+        except Exception:
+            pass
+        app = QApplication.instance()
+        if app is None:
+            app = QApplication([])
+        # 绑定到类属性，确保不被垃圾回收
+        cls._app = app
         cls.window = MainWindow()
 
     @classmethod

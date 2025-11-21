@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional, Union
 from datetime import datetime
 from dataclasses import dataclass, asdict
-
+import builtins
 
 @dataclass
 class MigrationResult:
@@ -238,7 +238,7 @@ class ConfigMigrationManager:
         }
         
         backup_info_file = backup_path / "backup_info.json"
-        with open(backup_info_file, 'w', encoding='utf-8') as f:
+        with builtins.open(backup_info_file, 'w', encoding='utf-8') as f:
             json.dump(backup_info, f, indent=2, ensure_ascii=False)
         
         return backup_path
@@ -252,7 +252,7 @@ class ConfigMigrationManager:
                 return True
             
             # 读取现有配置
-            with open(app_config_file, 'r', encoding='utf-8') as f:
+            with builtins.open(app_config_file, 'r', encoding='utf-8') as f:
                 config_data = json.load(f)
             
             # 应用迁移模板
@@ -260,7 +260,7 @@ class ConfigMigrationManager:
             config_data = self._apply_migration_template(config_data, template)
             
             # 保存迁移后的配置
-            with open(app_config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(app_config_file, 'w', encoding='utf-8') as f:
                 json.dump(config_data, f, indent=2, ensure_ascii=False)
             
             self.logger.info("app_config.json 迁移完成")
@@ -279,7 +279,7 @@ class ConfigMigrationManager:
                 return True
             
             # 读取现有配置
-            with open(ui_config_file, 'r', encoding='utf-8') as f:
+            with builtins.open(ui_config_file, 'r', encoding='utf-8') as f:
                 config_data = json.load(f)
             
             # 应用迁移模板
@@ -287,7 +287,7 @@ class ConfigMigrationManager:
             config_data = self._apply_migration_template(config_data, template)
             
             # 保存迁移后的配置
-            with open(ui_config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(ui_config_file, 'w', encoding='utf-8') as f:
                 json.dump(config_data, f, indent=2, ensure_ascii=False)
             
             self.logger.info("ui_config.json 迁移完成")
@@ -306,7 +306,7 @@ class ConfigMigrationManager:
                 return True
             
             # 读取现有配置
-            with open(file_types_config_file, 'r', encoding='utf-8') as f:
+            with builtins.open(file_types_config_file, 'r', encoding='utf-8') as f:
                 config_data = json.load(f)
             
             # 应用迁移模板
@@ -314,7 +314,7 @@ class ConfigMigrationManager:
             config_data = self._apply_migration_template(config_data, template)
             
             # 保存迁移后的配置
-            with open(file_types_config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(file_types_config_file, 'w', encoding='utf-8') as f:
                 json.dump(config_data, f, indent=2, ensure_ascii=False)
             
             self.logger.info("file_types.json 迁移完成")
@@ -388,7 +388,7 @@ class ConfigMigrationManager:
                 }
             }
             
-            with open(performance_config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(performance_config_file, 'w', encoding='utf-8') as f:
                 json.dump(performance_config, f, indent=2, ensure_ascii=False)
             
             new_configs.append('performance_config.json')
@@ -414,7 +414,7 @@ class ConfigMigrationManager:
                 }
             }
             
-            with open(cache_config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(cache_config_file, 'w', encoding='utf-8') as f:
                 json.dump(cache_config, f, indent=2, ensure_ascii=False)
             
             new_configs.append('cache_config.json')

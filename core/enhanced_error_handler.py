@@ -24,6 +24,7 @@ from enum import Enum
 import threading
 import queue
 import os
+import builtins
 
 
 class ErrorSeverity(Enum):
@@ -685,7 +686,7 @@ class EnhancedErrorHandler:
                 'recent_errors': self.get_error_history(50)
             }
             
-            with open(filepath, 'w', encoding='utf-8') as f:
+            with builtins.open(filepath, 'w', encoding='utf-8') as f:
                 json.dump(report_data, f, indent=2, ensure_ascii=False)
             
             self.logger.info(f"错误报告已保存: {filepath}")

@@ -22,6 +22,20 @@
       "warning_threshold_ms": 500,
       "critical_threshold_ms": 2000
     },
+    "metrics": {
+      "thresholds": {
+        "status_bar_update_ms": { "max": 0.1, "severity_over": "warning" },
+        "import_duration_ms": { "max": 0.5, "severity_over": "warning" },
+        "render_duration_ms": { "max": 2.0, "severity_over": "warning" },
+        "memory_usage_mb": { "max": 512, "severity_over": "warning", "warn_only": true },
+        "cpu_usage_percent": { "max": 80, "severity_over": "warning", "warn_only": true }
+      },
+      "max_snapshot_timers": 50,
+      "max_snapshot_counters": 50,
+      "max_snapshot_histograms": 20,
+      "snapshot_timer_trim": "drop_oldest",
+      "timer_keep_recent": 50
+    },
     "error_handling": {
       "auto_recovery": true,
       "strategy": "graceful",

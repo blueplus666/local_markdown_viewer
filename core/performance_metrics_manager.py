@@ -21,7 +21,9 @@ from dataclasses import dataclass, asdict
 from enum import Enum
 import queue
 import statistics
+import builtins
 
+from utils.config_manager import get_config_manager
 # 导入现有组件
 from .enhanced_error_handler import EnhancedErrorHandler, ErrorCategory, ErrorSeverity
 from .unified_cache_manager import UnifiedCacheManager, CacheStrategy
@@ -102,7 +104,7 @@ class PerformanceMetricsManager:
     
     def __init__(self, 
                  metrics_dir: Optional[Path] = None,
-                 collection_interval: float = 5.0,
+                 collection_interval: Optional[float] = None,
                  enable_alerts: bool = True,
                  max_history_size: int = 1000):
         """
@@ -117,9 +119,11 @@ class PerformanceMetricsManager:
         self.logger = None  # 将在setup_logging中设置
         
         # 配置参数
-        self.collection_interval = collection_interval
+        self.collection_interval = self._resolve_collection_interval(collection_interval)
         self.enable_alerts = enable_alerts
         self.max_history_size = max_history_size
+        # 测试态快速模式
+        self._fast_mode = os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1"
         
         # 指标数据目录
         if metrics_dir is None:
@@ -154,6 +158,7 @@ class PerformanceMetricsManager:
         # 控制标志
         self._stop_collection = False
         self._collection_thread = None
+        self._last_save_ts = 0.0
         
         # 初始化指标定义
         self._initialize_metric_definitions()
@@ -162,6 +167,40 @@ class PerformanceMetricsManager:
         self._start_metrics_collection()
         
         print("性能监控指标管理器初始化完成")
+
+    def _resolve_collection_interval(self, param_value: Optional[float]) -> float:
+        try:
+            if param_value is not None:
+                return float(param_value)
+        except Exception:
+            pass
+        try:
+            cm = get_config_manager()
+        except Exception:
+            cm = None
+        if cm is not None:
+            for key in (
+                "app.logging.metrics.collection_interval",
+                "features.logging.metrics.collection_interval",
+                "runtime.performance.collection_interval",
+                "runtime.performance.monitoring.collection_interval",
+            ):
+                try:
+                    v = cm.get_unified_config(key, None)
+                    if v is not None:
+                        try:
+                            return float(v)
+                        except Exception:
+                            continue
+                except Exception:
+                    continue
+        env_v = os.environ.get("LAD_METRICS_INTERVAL")
+        if env_v:
+            try:
+                return float(env_v)
+            except Exception:
+                pass
+        return 1.0
     
     def _initialize_metric_definitions(self):
         """初始化指标定义"""
@@ -320,7 +359,7 @@ class PerformanceMetricsManager:
         """收集系统指标"""
         try:
             # CPU使用率
-            cpu_percent = psutil.cpu_percent(interval=1)
+            cpu_percent = psutil.cpu_percent(interval=(0 if getattr(self, "_fast_mode", False) else 1))
             self._update_metric("cpu_usage", cpu_percent)
             
             # 内存使用率
@@ -517,6 +556,12 @@ class PerformanceMetricsManager:
     def _save_metrics_data(self):
         """保存指标数据"""
         try:
+            # 快速模式下做节流：每秒最多写一次
+            if getattr(self, "_fast_mode", False):
+                now_ts = time.time()
+                if (now_ts - getattr(self, "_last_save_ts", 0.0)) < 1.0:
+                    return
+                self._last_save_ts = now_ts
             # 保存到文件
             metrics_file = self.metrics_dir / f"metrics_{int(time.time())}.json"
             
@@ -542,7 +587,7 @@ class PerformanceMetricsManager:
                     'values_count': len(metric_data.values)
                 }
             
-            with open(metrics_file, 'w', encoding='utf-8') as f:
+            with builtins.open(metrics_file, 'w', encoding='utf-8') as f:
                 json.dump(save_data, f, indent=2, ensure_ascii=False)
             
             # 清理旧文件
@@ -673,7 +718,7 @@ class PerformanceMetricsManager:
                 }
             
             # 写入文件
-            with open(output_file, 'w', encoding='utf-8') as f:
+            with builtins.open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(export_data, f, indent=2, ensure_ascii=False)
             
             return f"指标导出完成，保存到: {output_file}"

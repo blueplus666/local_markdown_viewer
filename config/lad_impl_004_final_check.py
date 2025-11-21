@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any, List
 import importlib.util
+import builtins
 
 class LADImpl004FinalChecker:
     """LAD-IMPL-004最终检查器"""
@@ -333,7 +334,7 @@ class LADImpl004FinalChecker:
         
         # 保存报告
         report_file = Path(__file__).parent / "lad_impl_004_final_check_report.json"
-        with open(report_file, 'w', encoding='utf-8') as f:
+        with builtins.open(report_file, 'w', encoding='utf-8') as f:
             json.dump(final_report, f, ensure_ascii=False, indent=2)
         
         print(f"\n✅ 最终检查报告已保存: {report_file}")

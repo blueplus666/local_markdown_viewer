@@ -7,6 +7,7 @@ import asyncio
 import time
 import sys
 from pathlib import Path
+import os
 
 # 添加当前目录与项目内稳定包目录到 Python 路径
 _CUR_DIR = Path(__file__).resolve().parent
@@ -30,6 +31,34 @@ class ValidationTestRunner:
     def __init__(self):
         self.test_results = {}
         self.start_time = time.time()
+        self._fast_mode = os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1"
+        self._orig_sleep = None
+        if self._fast_mode:
+            self._install_sleep_scaling()
+
+    def _install_sleep_scaling(self):
+        """在快速模式安装全局 sleep 缩放（保持真实流程，显著缩短等待）。"""
+        try:
+            scale = float(os.environ.get("LAD_SLEEP_SCALE", "0.05"))
+            cap = float(os.environ.get("LAD_SLEEP_CAP", "0.20"))
+            self._orig_sleep = time.sleep
+            def _scaled_sleep(s):
+                try:
+                    return self._orig_sleep(min(s * scale, cap))
+                except Exception:
+                    return self._orig_sleep(0)
+            time.sleep = _scaled_sleep
+        except Exception:
+            pass
+
+    def _restore_sleep(self):
+        """恢复原始 sleep。"""
+        try:
+            if self._orig_sleep is not None:
+                time.sleep = self._orig_sleep
+                self._orig_sleep = None
+        except Exception:
+            pass
     
     async def run_all_validation_tests(self):
         """运行所有验证测试"""
@@ -62,6 +91,9 @@ class ValidationTestRunner:
         except Exception as e:
             print(f"❌ 验证测试失败: {e}")
             raise
+        finally:
+            if getattr(self, "_fast_mode", False):
+                self._restore_sleep()
     
     async def _test_system_integration_coordinator(self):
         """验证系统集成协调器"""
@@ -213,6 +245,8 @@ class ValidationTestRunner:
         print("\n🧪 验证集成测试套件...")
         
         try:
+            if getattr(self, "_fast_mode", False):
+                print("⚡ 快速模式：启用 sleep 缩放，保留真实流程")
             test_suite = IntegrationTestSuite()
             
             # 测试集成测试功能

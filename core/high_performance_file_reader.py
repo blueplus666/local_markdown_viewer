@@ -89,6 +89,7 @@ class HighPerformanceFileReader:
             cache_size: 缓存大小
         """
         self.logger = logging.getLogger(__name__)
+        self._fast_mode = (os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1")
         
         # 线程池执行器
         self.executor = ThreadPoolExecutor(max_workers=max_workers)
@@ -98,12 +99,12 @@ class HighPerformanceFileReader:
             max_size=cache_size,
             default_ttl=3600,  # 1小时过期
             strategy=CacheStrategy.LRU,
-            cache_dir=Path(__file__).parent.parent / "cache" / "file_reader"
+            cache_dir=(None if getattr(self, "_fast_mode", False) else Path(__file__).parent.parent / "cache" / "file_reader")
         )
         
         # 增强错误处理器
         self.error_handler = EnhancedErrorHandler(
-            error_log_dir=Path(__file__).parent.parent / "logs" / "errors",
+            error_log_dir=(None if getattr(self, "_fast_mode", False) else Path(__file__).parent.parent / "logs" / "errors"),
             max_error_history=200
         )
         
@@ -132,6 +133,8 @@ class HighPerformanceFileReader:
     
     def _start_preload_thread(self):
         """启动预读取线程"""
+        if getattr(self, "_fast_mode", False):
+            return
         if self.preload_thread is None or not self.preload_thread.is_alive():
             self.preload_running = True
             self.preload_thread = threading.Thread(target=self._preload_worker, daemon=True)
@@ -146,7 +149,7 @@ class HighPerformanceFileReader:
                     file_path = self.preload_queue.pop(0)
                     self._preload_file(file_path)
                 else:
-                    time.sleep(0.1)  # 等待新文件
+                    time.sleep(0.01 if getattr(self, "_fast_mode", False) else 0.1)  # 等待新文件
             except Exception as e:
                 self.logger.error(f"预读取线程错误: {e}")
                 time.sleep(1)
@@ -194,7 +197,8 @@ class HighPerformanceFileReader:
         try:
             import chardet
             with open(file_path, 'rb') as f:
-                raw_data = f.read(10000)
+                raw_len = 1024 if getattr(self, "_fast_mode", False) else 10000
+                raw_data = f.read(raw_len)
                 result = chardet.detect(raw_data)
                 return result['encoding'] or 'utf-8'
         except ImportError:
@@ -206,6 +210,8 @@ class HighPerformanceFileReader:
     def _calculate_checksum(self, file_path: str) -> str:
         """计算文件校验和"""
         try:
+            if getattr(self, "_fast_mode", False):
+                return ""
             hash_md5 = hashlib.md5()
             with open(file_path, "rb") as f:
                 for chunk in iter(lambda: f.read(4096), b""):

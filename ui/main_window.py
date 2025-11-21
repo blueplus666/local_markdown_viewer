@@ -60,6 +60,13 @@ class MainWindow(QMainWindow):
     
     def __init__(self):
         """初始化主窗口"""
+        # 确保存在 QApplication 实例（测试环境可能未先构造）
+        try:
+            from PyQt5.QtWidgets import QApplication as _QApp
+            if _QApp.instance() is None:
+                _QApp([])
+        except Exception:
+            pass
         super().__init__()
         
         # 设置日志

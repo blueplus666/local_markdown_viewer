@@ -22,6 +22,7 @@ from enum import Enum
 from collections import OrderedDict
 import threading
 import weakref
+import builtins
 
 
 class CacheStrategy(Enum):
@@ -490,7 +491,7 @@ class UnifiedCacheManager:
                             payload.setdefault('metadata', {})['serialized'] = True
                         cache_data['entries'][key] = payload
                 
-                with open(filepath, 'w', encoding='utf-8') as f:
+                with builtins.open(filepath, 'w', encoding='utf-8') as f:
                     json.dump(cache_data, f, indent=2, ensure_ascii=False)
                 
                 self.logger.info(f"缓存已保存到磁盘: {filepath}")

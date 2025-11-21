@@ -23,6 +23,7 @@ from enum import Enum
 import queue
 import gc
 import psutil
+import builtins
 
 # 导入现有组件
 from .enhanced_error_handler import EnhancedErrorHandler, ErrorCategory, ErrorSeverity
@@ -104,6 +105,8 @@ class DebugDiagnosticsManager:
         self.enable_auto_diagnostics = enable_auto_diagnostics
         self.auto_diagnostics_interval = auto_diagnostics_interval
         self.max_diagnostic_history = max_diagnostic_history
+        # 测试态快速模式
+        self._fast_mode = os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1"
         
         # 诊断数据目录
         if diagnostics_dir is None:
@@ -133,6 +136,7 @@ class DebugDiagnosticsManager:
         # 控制标志
         self._stop_auto_diagnostics = False
         self._auto_diagnostics_thread = None
+        self._last_save_ts = 0.0
         
         # 初始化组件状态
         self._initialize_component_statuses()
@@ -505,7 +509,7 @@ class DebugDiagnosticsManager:
         """获取系统资源信息"""
         try:
             # 获取CPU使用率
-            cpu_percent = psutil.cpu_percent(interval=1)
+            cpu_percent = psutil.cpu_percent(interval=(0 if getattr(self, "_fast_mode", False) else 1))
             
             # 获取内存使用率
             memory_percent = psutil.virtual_memory().percent
@@ -647,6 +651,11 @@ class DebugDiagnosticsManager:
                     self.diagnostic_history = self.diagnostic_history[-self.max_diagnostic_history:]
                 
                 # 保存到文件
+                if getattr(self, "_fast_mode", False):
+                    now_ts = time.time()
+                    if (now_ts - getattr(self, "_last_save_ts", 0.0)) < 1.0:
+                        return
+                    self._last_save_ts = now_ts
                 diagnostics_file = self.diagnostics_dir / f"diagnostics_{int(time.time())}.json"
                 
                 save_data = []
@@ -660,7 +669,7 @@ class DebugDiagnosticsManager:
                         'recommendations': result.recommendations
                     })
                 
-                with open(diagnostics_file, 'w', encoding='utf-8') as f:
+                with builtins.open(diagnostics_file, 'w', encoding='utf-8') as f:
                     json.dump(save_data, f, indent=2, ensure_ascii=False)
                 
         except Exception as e:
@@ -814,7 +823,7 @@ class DebugDiagnosticsManager:
                 })
             
             # 写入文件
-            with open(output_file, 'w', encoding='utf-8') as f:
+            with builtins.open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(filtered_results, f, indent=2, ensure_ascii=False)
             
             return f"诊断数据导出完成，共{len(filtered_results)}条记录，保存到: {output_file}"

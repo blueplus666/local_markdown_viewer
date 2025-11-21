@@ -308,8 +308,10 @@ class DynamicModuleImporter:
 					error_message=final_result.get('message', ''),
 				)
 
-				# 新增：若配置路径导入未成功，尝试内置导入（无路径）
-				if module_name == 'markdown_processor':
+				# 新增：若配置路径导入未成功，且调用方未显式指定fallback列表，尝试内置导入（无路径）
+				# 注意：当 fallback_modules 非空时，应按测试预期优先走显式fallback（例如 fallback 到 markdown 库），
+				# 不再抢占为 builtin_markdown_processor，避免破坏 test_fallback_scenario 的语义。
+				if module_name == 'markdown_processor' and not fallback_modules:
 					self.logger.log_from_template(
 						"module_import_fallback_attempt",
 						module_name=module_name,
@@ -322,6 +324,15 @@ class DynamicModuleImporter:
 						"builtin",
 						start_time,
 					)
+					if (
+						final_builtin.get('function_mapping_status') == 'incomplete'
+						or final_builtin.get('missing_functions')
+						or final_builtin.get('non_callable_functions')
+						or final_builtin.get('error_code') == self.ERROR_CODES['MISSING_SYMBOLS']
+					):
+						final_builtin['success'] = False
+						self._stats['failed_imports'] += 1
+						return final_builtin
 					if final_builtin.get('success'):
 						self._stats['successful_imports'] += 1
 						self.cache_manager.set(cache_key, final_builtin, ttl=7200)
@@ -443,7 +454,10 @@ class DynamicModuleImporter:
 		final_result['required_functions'] = required_functions or []
 		final_result['available_functions'] = available_functions
 		# 根据 success 与函数映射判定状态
-		if not final_result.get('success'):
+		if import_method.startswith("fallback") and final_result.get('success'):
+			if 'function_mapping_status' not in final_result:
+				final_result['function_mapping_status'] = 'fallback'
+		elif not final_result.get('success'):
 			final_result['function_mapping_status'] = final_result.get('function_mapping_status', 'import_failed')
 		else:
 			if final_result['required_functions']:

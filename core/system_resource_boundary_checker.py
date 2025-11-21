@@ -20,6 +20,7 @@ from dataclasses import dataclass, asdict
 from enum import Enum
 import queue
 import psutil
+import builtins
 
 # 导入现有组件
 from .enhanced_error_handler import EnhancedErrorHandler, ErrorCategory, ErrorSeverity
@@ -777,7 +778,7 @@ class SystemResourceBoundaryChecker:
                     config_data['limits'].append(limit_dict)
             
             self.config_dir.mkdir(parents=True, exist_ok=True)
-            with open(config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(config_file, 'w', encoding='utf-8') as f:
                 json.dump(config_data, f, indent=2, ensure_ascii=False)
                 
         except Exception as e:

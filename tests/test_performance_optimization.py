@@ -387,50 +387,62 @@ class TestPerformanceOptimizationIntegration(unittest.TestCase):
     
     def setUp(self):
         """测试前准备"""
-        self.file_reader = HighPerformanceFileReader()
-        self.renderer = RenderPerformanceOptimizer()
-        self.memory_manager = MemoryOptimizationManager()
-        self.benchmark = PerformanceBenchmark()
+        _t_all = time.perf_counter()
+        _t0 = time.perf_counter(); self.file_reader = HighPerformanceFileReader(); print(f"[BASE] setup.file_reader: {time.perf_counter() - _t0:.3f}s")
+        _t1 = time.perf_counter(); self.renderer = RenderPerformanceOptimizer(); print(f"[BASE] setup.renderer: {time.perf_counter() - _t1:.3f}s")
+        _t2 = time.perf_counter(); self.memory_manager = MemoryOptimizationManager(); print(f"[BASE] setup.memory_manager: {time.perf_counter() - _t2:.3f}s")
+        _t3 = time.perf_counter(); self.benchmark = PerformanceBenchmark(); print(f"[BASE] setup.benchmark: {time.perf_counter() - _t3:.3f}s")
         
         # 创建测试文件
         self.temp_dir = tempfile.mkdtemp()
         self.test_file = Path(self.temp_dir) / "integration_test.md"
         
         test_content = "# 集成测试\n\n这是一个用于集成测试的Markdown文件。\n" * 200
+        _t4 = time.perf_counter()
         with open(self.test_file, 'w', encoding='utf-8') as f:
             f.write(test_content)
+        print(f"[BASE] setup.file_io: {time.perf_counter() - _t4:.3f}s")
+        print(f"[BASE] setup.total: {time.perf_counter() - _t_all:.3f}s")
     
     def tearDown(self):
         """测试后清理"""
-        self.file_reader.shutdown()
-        self.renderer.shutdown()
-        self.memory_manager.shutdown()
-        self.benchmark.shutdown()
+        _t_all = time.perf_counter()
+        _t0 = time.perf_counter(); self.file_reader.shutdown(); print(f"[BASE] teardown.file_reader.shutdown: {time.perf_counter() - _t0:.3f}s")
+        _t1 = time.perf_counter(); self.renderer.shutdown(); print(f"[BASE] teardown.renderer.shutdown: {time.perf_counter() - _t1:.3f}s")
+        _t2 = time.perf_counter(); self.memory_manager.shutdown(); print(f"[BASE] teardown.memory_manager.shutdown: {time.perf_counter() - _t2:.3f}s")
+        _t3 = time.perf_counter(); self.benchmark.shutdown(); print(f"[BASE] teardown.benchmark.shutdown: {time.perf_counter() - _t3:.3f}s")
         
         import shutil
-        shutil.rmtree(self.temp_dir)
+        _t4 = time.perf_counter(); shutil.rmtree(self.temp_dir); print(f"[BASE] teardown.cleanup: {time.perf_counter() - _t4:.3f}s")
+        print(f"[BASE] teardown.total: {time.perf_counter() - _t_all:.3f}s")
     
     def test_end_to_end_performance_workflow(self):
         """测试端到端性能工作流"""
-        # 1. 文件读取
+        _t_all = time.perf_counter()
+        _t0 = time.perf_counter()
         read_result = self.file_reader.read_file(str(self.test_file), ReadStrategy.MAPPED)
+        print(f"[PROF] e2e.read: {time.perf_counter() - _t0:.3f}s")
         self.assertTrue(read_result['success'])
         
-        # 2. 内容渲染
+        _t1 = time.perf_counter()
         render_result = self.renderer.render_content(
             read_result['content'], 
             RenderStrategy.MULTI_THREAD, 
             RenderMode.FULL
         )
+        print(f"[PROF] e2e.render: {time.perf_counter() - _t1:.3f}s")
         self.assertTrue(render_result['success'])
         
-        # 3. 内存优化
+        _t2 = time.perf_counter()
         memory_info = self.memory_manager.optimize_memory()
+        print(f"[PROF] e2e.optimize_memory: {time.perf_counter() - _t2:.3f}s")
         self.assertIsNotNone(memory_info)
         
-        # 4. 性能基准测试
+        _t3 = time.perf_counter()
         benchmark_results = self.benchmark.benchmark_file_read([self.test_file])
+        print(f"[PROF] e2e.benchmark_file_read: {time.perf_counter() - _t3:.3f}s")
         self.assertGreater(len(benchmark_results), 0)
+        print(f"[PROF] e2e.total: {time.perf_counter() - _t_all:.3f}s")
         
         # 验证整个流程的性能指标
         read_metrics = read_result['metrics']
@@ -441,15 +453,17 @@ class TestPerformanceOptimizationIntegration(unittest.TestCase):
     
     def test_performance_monitoring(self):
         """测试性能监控"""
-        # 执行一些操作
+        _t_all = time.perf_counter()
+        _t_loop = time.perf_counter()
         for _ in range(5):
             self.file_reader.read_file(str(self.test_file))
             self.renderer.render_content("# 测试内容\n", RenderStrategy.SINGLE_THREAD)
+        print(f"[PROF] mon.loop: {time.perf_counter() - _t_loop:.3f}s")
         
-        # 获取各项统计信息
-        read_stats = self.file_reader.get_read_stats()
-        render_stats = self.renderer.get_render_stats()
-        memory_stats = self.memory_manager.get_memory_stats()
+        _t0 = time.perf_counter(); read_stats = self.file_reader.get_read_stats(); print(f"[PROF] mon.get_read_stats: {time.perf_counter() - _t0:.3f}s")
+        _t1 = time.perf_counter(); render_stats = self.renderer.get_render_stats(); print(f"[PROF] mon.get_render_stats: {time.perf_counter() - _t1:.3f}s")
+        _t2 = time.perf_counter(); memory_stats = self.memory_manager.get_memory_stats(); print(f"[PROF] mon.get_memory_stats: {time.perf_counter() - _t2:.3f}s")
+        print(f"[PROF] mon.total: {time.perf_counter() - _t_all:.3f}s")
         
         # 验证统计信息
         self.assertGreater(read_stats['total_reads'], 0)

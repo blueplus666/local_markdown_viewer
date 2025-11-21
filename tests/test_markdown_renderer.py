@@ -134,8 +134,11 @@ def hello_world():
             self.assertTrue('encoding' in result)
             self.assertTrue('total_time' in result)
             
+            expected_path = os.path.normcase(os.path.normpath(str(Path(temp_file).resolve())))
+            actual_path = os.path.normcase(os.path.normpath(result['file_path']))
+            
             # 检查文件信息
-            self.assertEqual(result['file_path'], temp_file)
+            self.assertEqual(actual_path, expected_path)
             self.assertIsInstance(result['file_info']['size'], int)
             self.assertEqual(result['encoding']['encoding'], 'utf-8')
             

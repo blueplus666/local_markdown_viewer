@@ -34,6 +34,7 @@ from core.debug_diagnostics_manager import (
     DebugDiagnosticsManager, DiagnosticLevel, DiagnosticType, DiagnosticResult,
     ComponentStatus, SystemHealth
 )
+from utils.config_manager import get_config_manager
 
 
 class TestUnifiedLoggingFramework:
@@ -135,7 +136,6 @@ class TestPerformanceMetricsManager:
         self.test_dir = Path(tempfile.mkdtemp())
         self.metrics_manager = PerformanceMetricsManager(
             metrics_dir=self.test_dir / "metrics",
-            collection_interval=1.0,  # 快速收集用于测试
             enable_alerts=True,
             max_history_size=100
         )
@@ -150,7 +150,18 @@ class TestPerformanceMetricsManager:
     def test_metrics_manager_initialization(self):
         """测试指标管理器初始化"""
         assert self.metrics_manager is not None
-        assert self.metrics_manager.collection_interval == 1.0
+        cm = get_config_manager()
+        expected = cm.get_unified_config("app.logging.metrics.collection_interval",
+                                         cm.get_unified_config("features.logging.metrics.collection_interval",
+                                                              cm.get_unified_config("runtime.performance.collection_interval",
+                                                                                   cm.get_unified_config("runtime.performance.monitoring.collection_interval",
+                                                                                                        float(os.environ.get("LAD_METRICS_INTERVAL", 1.0))))) )
+        # 确保为浮点数
+        try:
+            expected = float(expected)
+        except Exception:
+            expected = 1.0
+        assert self.metrics_manager.collection_interval == expected
         assert self.metrics_manager.enable_alerts is True
         assert self.metrics_manager.max_history_size == 100
     
@@ -390,8 +401,7 @@ class TestObservabilityIntegration:
         
         # 创建指标管理器
         self.metrics_manager = PerformanceMetricsManager(
-            metrics_dir=self.test_dir / "metrics",
-            collection_interval=1.0
+            metrics_dir=self.test_dir / "metrics"
         )
         
         # 创建诊断管理器

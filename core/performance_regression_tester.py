@@ -20,6 +20,7 @@ from dataclasses import dataclass, asdict
 from enum import Enum
 import numpy as np
 from collections import deque, defaultdict
+import builtins
 
 # 导入性能优化组件
 from .performance_benchmarker import PerformanceBenchmarker, BenchmarkResult, BenchmarkType
@@ -177,7 +178,7 @@ class PerformanceRegressionTester:
                 output_file = Path(__file__).parent.parent / "outputs" / "baseline" / "performance_baseline.json"
                 output_file.parent.mkdir(parents=True, exist_ok=True)
             
-            with open(output_file, 'w', encoding='utf-8') as f:
+            with builtins.open(output_file, 'w', encoding='utf-8') as f:
                 json.dump(baseline_data, f, indent=2, ensure_ascii=False)
             
             # 更新基准线文件路径和数据
@@ -543,7 +544,7 @@ class PerformanceRegressionTester:
             
             report_content = self.generate_regression_report()
             
-            with open(report_path, 'w', encoding='utf-8') as f:
+            with builtins.open(report_path, 'w', encoding='utf-8') as f:
                 f.write(report_content)
             
             self.logger.info(f"回归检测报告已保存: {report_path}")

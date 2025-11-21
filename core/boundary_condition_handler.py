@@ -22,6 +22,7 @@ import queue
 import re
 import inspect
 import logging
+import builtins
 
 # 导入现有组件
 from .enhanced_error_handler import EnhancedErrorHandler, ErrorCategory, ErrorSeverity
@@ -648,7 +649,7 @@ class BoundaryConditionHandler:
                     config_data['rules'].append(rule_dict)
             
             self.config_dir.mkdir(parents=True, exist_ok=True)
-            with open(config_file, 'w', encoding='utf-8') as f:
+            with builtins.open(config_file, 'w', encoding='utf-8') as f:
                 json.dump(config_data, f, indent=2, ensure_ascii=False)
                 
         except Exception as e:

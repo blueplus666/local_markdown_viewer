@@ -1,0 +1,66 @@
+# --- Python 运行环境与缓存 ---
+.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# --- pytest 缓存与运行日志 ---
+.pytest_cache/
+pytest_progress.log
+pytest_progress_*.log
+pytest_run_*.log
+
+# --- 缓存与临时目录 ---
+cache/
+temp/
+.tmp_test_eh/
+.tmp_test_eh2/
+.tmp_test_eh_wd/
+debug_render/
+
+# --- 备份与一次性数据 ---
+backup_*/
+backups/
+backup_link_fixes/
+
+# --- 自动生成的日志与分析结果 ---
+cache_optimization_test.log
+error_handling_test.log
+deep_analysis_results.txt
+integration_test_report.json
+validation_report.json
+*.log
+
+# --- 指标/监控/输出数据（如可再生成，可开启） ---
+metrics/
+monitoring_data/
+outputs/
+
+# benchmarks 下自动生成的性能报告
+benchmarks/performance_report_*.md
+!benchmarks/performance_report_sample.md
+
+
+# --- 运行日志目录建议：提交目录但忽略内容 ---
+logs/*
+!.gitkeep
+
+# IDE / 工具本地配置（如未来出现）
+.vscode/
+.idea/
+.mypy_cache/
+
+# --- 临时文件 ---
+*.tmp
+*.temp
+*.temp.txt
+*.temp.md
+*.temp.py
+
+# SQLite 临时文件
+*.db-shm
+*.db-wal
+
+utils/config/backup/
+

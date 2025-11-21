@@ -18,7 +18,7 @@ from datetime import datetime
 from dataclasses import dataclass, asdict
 from enum import Enum
 from abc import ABC, abstractmethod
-
+import builtins
 
 class InterfaceVersion(Enum):
     """接口版本枚举"""
@@ -204,7 +204,7 @@ class InterfaceCompatibilityManager:
             spec_files = list(self.specifications_dir.glob("*.json"))
             for spec_file in spec_files:
                 try:
-                    with open(spec_file, 'r', encoding='utf-8') as f:
+                    with builtins.open(spec_file, 'r', encoding='utf-8') as f:
                         spec_data = json.load(f)
                     
                     interface_name = spec_data.get('name')
@@ -236,7 +236,7 @@ class InterfaceCompatibilityManager:
         try:
             rules_file = self.compatibility_dir / "compatibility_rules.json"
             if rules_file.exists():
-                with open(rules_file, 'r', encoding='utf-8') as f:
+                with builtins.open(rules_file, 'r', encoding='utf-8') as f:
                     self.compatibility_rules = json.load(f)
                 self.logger.info("兼容性规则加载完成")
             else:
@@ -271,7 +271,7 @@ class InterfaceCompatibilityManager:
         """保存兼容性规则"""
         try:
             rules_file = self.compatibility_dir / "compatibility_rules.json"
-            with open(rules_file, 'w', encoding='utf-8') as f:
+            with builtins.open(rules_file, 'w', encoding='utf-8') as f:
                 json.dump(self.compatibility_rules, f, indent=2, ensure_ascii=False)
             
             self.logger.info("兼容性规则保存完成")
@@ -428,7 +428,7 @@ class InterfaceCompatibilityManager:
             
             # 保存规范文件
             spec_file = interface_dir / f"{spec.version}.json"
-            with open(spec_file, 'w', encoding='utf-8') as f:
+            with builtins.open(spec_file, 'w', encoding='utf-8') as f:
                 json.dump(spec.to_dict(), f, indent=2, ensure_ascii=False)
             
             # 更新缓存

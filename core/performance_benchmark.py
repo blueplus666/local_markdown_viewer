@@ -14,6 +14,7 @@ import time
 import json
 import statistics
 import logging
+import builtins
 from pathlib import Path
 from typing import Dict, Any, Optional, Union, List, Callable, Tuple
 from dataclasses import dataclass, asdict
@@ -144,8 +145,22 @@ class PerformanceBenchmark:
                 'duration_seconds': 60
             }
         }
+        # 测试态快速模式
+        self._fast_mode = os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1"
+        if self._fast_mode:
+            self.test_configs[BenchmarkType.FILE_READ]['iterations'] = 1
+            self.test_configs[BenchmarkType.RENDER]['iterations'] = 1
+            self.test_configs[BenchmarkType.MEMORY]['iterations'] = 1
+            self.test_configs[BenchmarkType.INTEGRATION]['iterations'] = 1
+            self.test_configs[BenchmarkType.STRESS]['duration_seconds'] = 5
         
         self.logger.info("性能基准测试器初始化完成")
+
+    def _sleep(self, seconds: float) -> None:
+        """封装sleep，快速模式下按比例缩短。"""
+        if getattr(self, "_fast_mode", False):
+            seconds = max(seconds * 0.1, 0.001)
+        time.sleep(seconds)
     
     def load_baselines(self):
         """加载基准数据"""
@@ -165,7 +180,7 @@ class PerformanceBenchmark:
         """保存基准数据"""
         try:
             baseline_file = self.baseline_dir / "performance_baselines.json"
-            with open(baseline_file, 'w', encoding='utf-8') as f:
+            with builtins.open(baseline_file, 'w', encoding='utf-8') as f:
                 json.dump(self.baselines, f, indent=2, ensure_ascii=False)
             self.logger.info("基准数据已保存")
         except Exception as e:
@@ -176,22 +191,29 @@ class PerformanceBenchmark:
         try:
             test_dir.mkdir(parents=True, exist_ok=True)
             
-            # 小文件 (1KB)
-            small_content = "# 小文件测试\n\n这是一个小的Markdown文件，用于测试基本性能。\n" * 50
+            # 小文件 (约1KB，快速模式下更小)
+            _small_mult = 50
+            _medium_mult = 2000
+            _large_mult = 20000
+            if getattr(self, "_fast_mode", False):
+                _small_mult = 10
+                _medium_mult = 200
+                _large_mult = 2000
+            small_content = "# 小文件测试\n\n这是一个小的Markdown文件，用于测试基本性能。\n" * _small_mult
             small_file = test_dir / "small_test.md"
-            with open(small_file, 'w', encoding='utf-8') as f:
+            with builtins.open(small_file, 'w', encoding='utf-8') as f:
                 f.write(small_content)
             
-            # 中等文件 (100KB)
-            medium_content = "# 中等文件测试\n\n" + ("这是一个中等大小的Markdown文件，包含更多内容用于测试。\n" * 2000)
+            # 中等文件 (约100KB，快速模式下更小)
+            medium_content = "# 中等文件测试\n\n" + ("这是一个中等大小的Markdown文件，包含更多内容用于测试。\n" * _medium_mult)
             medium_file = test_dir / "medium_test.md"
-            with open(medium_file, 'w', encoding='utf-8') as f:
+            with builtins.open(medium_file, 'w', encoding='utf-8') as f:
                 f.write(medium_content)
             
-            # 大文件 (1MB)
-            large_content = "# 大文件测试\n\n" + ("这是一个大文件，用于测试大文件处理性能。包含大量内容。\n" * 20000)
+            # 大文件 (约1MB，快速模式下更小)
+            large_content = "# 大文件测试\n\n" + ("这是一个大文件，用于测试大文件处理性能。包含大量内容。\n" * _large_mult)
             large_file = test_dir / "large_test.md"
-            with open(large_file, 'w', encoding='utf-8') as f:
+            with builtins.open(large_file, 'w', encoding='utf-8') as f:
                 f.write(large_content)
             
             self.logger.info("测试文件创建完成")
@@ -588,15 +610,15 @@ class PerformanceBenchmark:
     
     def _simulate_normal_load(self):
         """模拟正常负载"""
-        time.sleep(0.1)  # 模拟100ms的处理时间
+        self._sleep(0.1)  # 模拟100ms的处理时间
     
     def _simulate_high_load(self):
         """模拟高负载"""
-        time.sleep(0.5)  # 模拟500ms的处理时间
+        self._sleep(0.5)  # 模拟500ms的处理时间
     
     def _simulate_low_memory(self):
         """模拟低内存情况"""
-        time.sleep(0.2)  # 模拟200ms的处理时间
+        self._sleep(0.2)  # 模拟200ms的处理时间
     
     def _compare_with_baseline(self, test_name: str, metrics: BenchmarkMetrics) -> Dict[str, Any]:
         """与基准比较"""
@@ -783,7 +805,7 @@ class PerformanceBenchmark:
             
             # 保存报告
             report_file = self.baseline_dir / f"performance_report_{int(time.time())}.md"
-            with open(report_file, 'w', encoding='utf-8') as f:
+            with builtins.open(report_file, 'w', encoding='utf-8') as f:
                 f.write(report)
             
             self.logger.info(f"性能报告已保存到: {report_file}")

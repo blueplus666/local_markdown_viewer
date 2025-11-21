@@ -17,7 +17,7 @@ from typing import Dict, Any, List, Optional, Union, Set
 from datetime import datetime
 from dataclasses import dataclass, asdict
 from enum import Enum
-
+import builtins
 
 class ResourceType(Enum):
     """资源类型枚举"""
@@ -459,7 +459,7 @@ class ResourceManager:
             }
             
             backup_info_file = backup_path / "backup_info.json"
-            with open(backup_info_file, 'w', encoding='utf-8') as f:
+            with builtins.open(backup_info_file, 'w', encoding='utf-8') as f:
                 json.dump(backup_info, f, indent=2, ensure_ascii=False)
             
             self.logger.info(f"资源备份完成: {backup_path}")

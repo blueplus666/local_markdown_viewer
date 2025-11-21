@@ -39,6 +39,17 @@ def pytest_configure(config):
             QCoreApplication.setAttribute(Qt.AA_ShareOpenGLContexts, True)
     except Exception:
         pass
+    # 统一测试初始化策略：设置 offscreen 与 Qt 日志降噪，并确保 QApplication 存在
+    try:
+        os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+        # 抑制 Qt 控制台调试输出与 QPA 噪声（注意：某些直接 stderr 的提示可能仍会出现）
+        rules_default = "*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"
+        os.environ.setdefault("QT_LOGGING_RULES", rules_default)
+        from PyQt5.QtWidgets import QApplication
+        if QApplication.instance() is None:
+            QApplication([])
+    except Exception:
+        pass
     try:
         print(f"[SESSION_BEGIN] {_ts()} pid={os.getpid()}")
     except Exception:
@@ -193,3 +204,27 @@ def pytest_collection_modifyitems(config, items):
         return priority, original_order[item]
 
     items.sort(key=sort_key)
+
+@pytest.fixture(autouse=True)
+def _lad_fast_sleep_patch():
+    _tm = (os.environ.get('LAD_TEST_MODE') == '1') or (os.environ.get('LAD_QA_FAST') == '1')
+    if not _tm:
+        yield
+        return
+    try:
+        scale = float(os.environ.get('LAD_SLEEP_SCALE', '0.05'))
+        cap = float(os.environ.get('LAD_SLEEP_CAP', '0.20'))
+    except Exception:
+        scale, cap = 0.05, 0.20
+    import time as _t
+    _orig = _t.sleep
+    def _scaled(s):
+        try:
+            return _orig(min(max(float(s), 0.0) * scale, cap))
+        except Exception:
+            return _orig(0)
+    _t.sleep = _scaled
+    try:
+        yield
+    finally:
+        _t.sleep = _orig

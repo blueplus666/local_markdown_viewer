@@ -77,7 +77,9 @@ class TestFileResolver(unittest.TestCase):
         result = self.resolver.resolve_file_path(self.md_file)
         
         self.assertTrue(result['success'])
-        self.assertEqual(result['file_path'], str(self.md_file.absolute()))
+        expected_path = os.path.normcase(os.path.normpath(str(self.md_file.resolve())))
+        actual_path = os.path.normcase(os.path.normpath(result['file_path']))
+        self.assertEqual(actual_path, expected_path)
         
         # 检查文件信息
         file_info = result['file_info']

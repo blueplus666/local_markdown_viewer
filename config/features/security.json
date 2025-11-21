@@ -1,5 +1,5 @@
 {
-  "allowed_protocols": ["https"],
+  "allowed_protocols": ["https", "mailto"],
   "allowed_domains": ["example.com"],
   "forbidden_patterns": [],
   "windows_specific": {

@@ -159,11 +159,11 @@ local_markdown_viewer/
 
 - 统一初始化策略
   - 测试会话启动时自动构造 `QApplication([])`，避免在未构造 QApplication 前创建 `QWidget/QMainWindow`。
-  - 使用 `QT_QPA_PLATFORM=offscreen` 以支持无头/CI 环境。
+  - 默认不设置 `QT_QPA_PLATFORM`；使用 `QT_OPENGL=software`，并设置 `QTWEBENGINE_DISABLE_SANDBOX=1` 与 `QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox --disable-gpu --single-process"`，以支持无头/CI 环境并禁用 GPU/sandbox。
   - 采用 `QT_LOGGING_RULES="*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false"` 降低 Qt 控制台噪声。
 - 本地与 CI 一致化
-  - 已在 `tests/conftest.py` 中统一设置上述策略。
-  - `run_pytests.ps1` 默认设置 `offscreen` 与 `QT_LOGGING_RULES`，并开启 `-W error` 门禁（警告即错误）。
+  - 已在 `tests/conftest.py` 与运行脚本中统一设置上述策略。
+  - `run_pytests.ps1` 默认不设置 `QT_QPA_PLATFORM`，设置前述软件 OpenGL 与禁用 sandbox/GPU 的变量，并开启 `-W error` 门禁（警告即错误）。
 - 兼容性与提示
   - 个别 Qt 运行时提示（如字体目录缺失）可能直接输出到 stderr，非 Python 警告，不影响 `-W error`；如需进一步静音，可在环境层面补充字体或调整日志规则。
 
@@ -178,7 +178,9 @@ local_markdown_viewer/
 - 直接运行示例（PowerShell）
   - 单次解禁运行：
     ```powershell
-    $env:LAD_RUN_013_TESTS="1"; $env:LAD_TEST_MODE="1"; $env:QT_QPA_PLATFORM="offscreen";
+    $env:LAD_RUN_013_TESTS="1"; $env:LAD_TEST_MODE="1";
+    $env:QT_OPENGL="software"; $env:QTWEBENGINE_DISABLE_SANDBOX="1";
+    $env:QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox --disable-gpu --single-process";
     $env:QT_LOGGING_RULES="*.debug=false;qt.qpa.*=false;qt.text.*=false;qt.fonts.*=false";
     python -u -m pytest -vv -W error -s tests/test_link_processor_external.py
     ```

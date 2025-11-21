@@ -13,6 +13,8 @@ from dataclasses import dataclass, asdict
 from enum import Enum
 import psutil
 import asyncio
+import os
+import builtins
 
 from .unified_cache_manager import UnifiedCacheManager
 from .enhanced_error_handler import EnhancedErrorHandler
@@ -130,6 +132,12 @@ class PerformanceOptimizationStrategy:
         # 优化状态
         self._optimization_running = False
         self._optimization_thread = None
+        # 测试态快速模式
+        self._fast_mode = os.environ.get("LAD_TEST_MODE") == "1" or os.environ.get("LAD_QA_FAST") == "1"
+        if self._fast_mode:
+            self.enable_auto_optimization = False
+            if self.optimization_interval and self.optimization_interval > 1.0:
+                self.optimization_interval = 1.0
         
         # 初始化默认规则
         self._initialize_default_rules()
@@ -429,7 +437,7 @@ class PerformanceOptimizationStrategy:
             if metric_name == "memory_usage":
                 return psutil.virtual_memory().percent / 100.0
             elif metric_name == "cpu_usage":
-                return psutil.cpu_percent(interval=1) / 100.0
+                return psutil.cpu_percent(interval=(0 if getattr(self, "_fast_mode", False) else 1)) / 100.0
             elif metric_name == "disk_usage":
                 try:
                     return psutil.disk_usage('/').percent / 100.0
@@ -750,7 +758,7 @@ class PerformanceOptimizationStrategy:
         """
         try:
             return {
-                "cpu_usage": psutil.cpu_percent(interval=1) / 100.0,
+                "cpu_usage": psutil.cpu_percent(interval=(0 if getattr(self, "_fast_mode", False) else 1)) / 100.0,
                 "memory_usage": psutil.virtual_memory().percent / 100.0,
                 "disk_usage": psutil.disk_usage('/').percent / 100.0
             }
@@ -1038,7 +1046,7 @@ class PerformanceOptimizationStrategy:
                 rule_dict['level'] = rule.level.value
                 rules_data['rules'].append(rule_dict)
             
-            with open(rules_file, 'w', encoding='utf-8') as f:
+            with builtins.open(rules_file, 'w', encoding='utf-8') as f:
                 json.dump(rules_data, f, indent=2, ensure_ascii=False)
             
             # 保存性能配置
@@ -1054,7 +1062,7 @@ class PerformanceOptimizationStrategy:
                 profile_dict['targets'] = [t.value for t in profile.targets]
                 profiles_data['profiles'].append(profile_dict)
             
-            with open(profiles_file, 'w', encoding='utf-8') as f:
+            with builtins.open(profiles_file, 'w', encoding='utf-8') as f:
                 json.dump(profiles_data, f, indent=2, ensure_ascii=False)
             
             print("性能优化策略配置已保存")

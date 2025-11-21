@@ -17,6 +17,7 @@ from urllib.parse import urlparse, unquote
 import json
 import logging
 import os
+from utils.config_manager import get_config_manager
 
 
 class LinkType(Enum):
@@ -169,16 +170,18 @@ class LinkValidator:
         windows_specific = (policy.get("windows_specific") or {})
 
         # URL校验
-        if isinstance(resolved, str) and (resolved.startswith("http://") or resolved.startswith("https://")):
+        if isinstance(resolved, str):
             pr = urlparse(resolved)
-            allowed_protocols = security.get("allowed_protocols")
-            if allowed_protocols and pr.scheme not in allowed_protocols:
-                return ValidationResult(ok=False, error_code=ErrorCode.SECURITY_BLOCKED, message="protocol not allowed", details={"scheme": pr.scheme})
-            allowed_domains = security.get("allowed_domains")
-            # fail-closed：空列表或None → 拒绝外链
-            if not allowed_domains or pr.netloc not in allowed_domains:
-                return ValidationResult(ok=False, error_code=ErrorCode.SECURITY_BLOCKED, message="domain not allowed", details={"domain": pr.netloc})
-            return ValidationResult(ok=True)
+            if pr.scheme:
+                allowed_protocols = security.get("allowed_protocols")
+                if allowed_protocols and pr.scheme not in allowed_protocols:
+                    return ValidationResult(ok=False, error_code=ErrorCode.SECURITY_BLOCKED, message="protocol not allowed", details={"scheme": pr.scheme})
+                if pr.scheme in ("http", "https"):
+                    allowed_domains = security.get("allowed_domains")
+                    # fail-closed：空列表或None → 拒绝外链
+                    if not allowed_domains or pr.netloc not in allowed_domains:
+                        return ValidationResult(ok=False, error_code=ErrorCode.SECURITY_BLOCKED, message="domain not allowed", details={"domain": pr.netloc})
+                return ValidationResult(ok=True)
 
         # 路径校验
         if isinstance(resolved, Path):
@@ -226,7 +229,7 @@ class LinkValidator:
 class LinkProcessor:
     def __init__(self, config_manager: Any = None, file_resolver: Any = None, logger: Any = None,
                  snapshot_manager: Any = None, performance_metrics: Any = None) -> None:
-        self.config_manager = config_manager
+        self.config_manager = config_manager or get_config_manager()
         self.file_resolver = file_resolver
         self.snapshot_manager = snapshot_manager
         self.performance_metrics = performance_metrics
@@ -258,7 +261,7 @@ class LinkProcessor:
         if not self.config_manager:
             return {"check_exists": True, "security": {}}
         try:
-            cm = self.config_manager
+            cm = self.config_manager or get_config_manager()
             get_uc = getattr(cm, "get_unified_config", None)
             get_cfg = getattr(cm, "get_config", None)
 

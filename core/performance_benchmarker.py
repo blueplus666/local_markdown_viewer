@@ -21,6 +21,7 @@ from enum import Enum
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
+import builtins
 
 # 导入性能优化组件
 from .high_performance_file_reader import HighPerformanceFileReader, ReadStrategy
@@ -139,12 +140,12 @@ class PerformanceBenchmarker:
                     test_content = f"# Test Content {i}\n\n" + "Content " * 1000
                     test_file = self.output_dir / f"test_file_{i}.md"
                     
-                    with open(test_file, 'w', encoding='utf-8') as f:
+                    with builtins.open(test_file, 'w', encoding='utf-8') as f:
                         f.write(test_content)
                     
                     # 使用不同策略读取
                     if strategy == ReadStrategy.SYNC:
-                        with open(test_file, 'r', encoding='utf-8') as f:
+                        with builtins.open(test_file, 'r', encoding='utf-8') as f:
                             content = f.read()
                     elif strategy == ReadStrategy.ASYNC:
                         # 模拟异步读取
@@ -319,14 +320,14 @@ class PerformanceBenchmarker:
             
             report_content = self.generate_report(benchmark_result)
             
-            with open(report_path, 'w', encoding='utf-8') as f:
+            with builtins.open(report_path, 'w', encoding='utf-8') as f:
                 f.write(report_content)
             
             self.logger.info(f"基准测试报告已保存: {report_path}")
             
             # 同时保存JSON格式的原始数据
             json_path = report_path.with_suffix('.json')
-            with open(json_path, 'w', encoding='utf-8') as f:
+            with builtins.open(json_path, 'w', encoding='utf-8') as f:
                 json.dump(benchmark_result.results, f, indent=2, ensure_ascii=False)
             
             self.logger.info(f"基准测试数据已保存: {json_path}")

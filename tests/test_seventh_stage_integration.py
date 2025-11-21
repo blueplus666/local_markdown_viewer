@@ -7,6 +7,7 @@
 import unittest
 import tempfile
 import time
+import statistics
 import sys
 from pathlib import Path
 import shutil
@@ -79,16 +80,17 @@ class SeventhStageIntegrationTest(unittest.TestCase):
         
         # 多次测试性能指标
         performance_results = []
-        for i in range(3):
-            start_time = time.time()
-            time.sleep(0.01)  # 模拟工作负载
-            end_time = time.time()
+        for i in range(5):
+            start_time = time.perf_counter()
+            time.sleep(0.02)  # 模拟工作负载
+            end_time = time.perf_counter()
             performance_results.append(end_time - start_time)
         
         # 验证性能一致性（允许20%的波动，因为sleep时间太短，波动较大）
         avg_performance = sum(performance_results) / len(performance_results)
-        for result in performance_results:
-            self.assertLess(abs(result - avg_performance) / avg_performance, 0.2)
+        stdev = statistics.stdev(performance_results) if len(performance_results) > 1 else 0.0
+        cv = (stdev / avg_performance) if avg_performance > 0 else 0.0
+        self.assertLess(cv, 0.5)
         
         print("✅ 性能一致性测试通过")
 

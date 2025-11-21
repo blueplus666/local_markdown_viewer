@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QApplication
 def ensure_qapp():
     app = QApplication.instance()
     if app is None:
-        app = QApplication(sys.argv)
+        app = QApplication([])
     return app
 
 

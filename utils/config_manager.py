@@ -15,6 +15,7 @@ import os
 import logging
 from pathlib import Path
 from typing import Dict, Any, Optional, Union
+import builtins
 
 
 class ConfigManager:
@@ -73,7 +74,7 @@ class ConfigManager:
         """加载应用配置文件"""
         config_file = self.config_dir / "app_config.json"
         if config_file.exists():
-            with open(config_file, 'r', encoding='utf-8') as f:
+            with builtins.open(config_file, 'r', encoding='utf-8') as f:
                 self._app_config = json.load(f)
         else:
             self.logger.warning("应用配置文件不存在，将创建默认配置")
@@ -83,7 +84,7 @@ class ConfigManager:
         """加载界面配置文件"""
         config_file = self.config_dir / "ui_config.json"
         if config_file.exists():
-            with open(config_file, 'r', encoding='utf-8') as f:
+            with builtins.open(config_file, 'r', encoding='utf-8') as f:
                 self._ui_config = json.load(f)
         else:
             self.logger.warning("界面配置文件不存在，将创建默认配置")
@@ -93,7 +94,7 @@ class ConfigManager:
         """加载文件类型配置文件"""
         config_file = self.config_dir / "file_types.json"
         if config_file.exists():
-            with open(config_file, 'r', encoding='utf-8') as f:
+            with builtins.open(config_file, 'r', encoding='utf-8') as f:
                 self._file_types_config = json.load(f)
         else:
             self.logger.warning("文件类型配置文件不存在，将创建默认配置")
@@ -419,21 +420,21 @@ class ConfigManager:
     def _save_app_config(self):
         """保存应用配置"""
         config_file = self.config_dir / "app_config.json"
-        with open(config_file, 'w', encoding='utf-8') as f:
+        with builtins.open(config_file, 'w', encoding='utf-8') as f:
             json.dump(self._app_config, f, indent=2, ensure_ascii=False)
         self._notify_change_listeners("app")
     
     def _save_ui_config(self):
         """保存界面配置"""
         config_file = self.config_dir / "ui_config.json"
-        with open(config_file, 'w', encoding='utf-8') as f:
+        with builtins.open(config_file, 'w', encoding='utf-8') as f:
             json.dump(self._ui_config, f, indent=2, ensure_ascii=False)
         self._notify_change_listeners("ui")
     
     def _save_file_types_config(self):
         """保存文件类型配置"""
         config_file = self.config_dir / "file_types.json"
-        with open(config_file, 'w', encoding='utf-8') as f:
+        with builtins.open(config_file, 'w', encoding='utf-8') as f:
             json.dump(self._file_types_config, f, indent=2, ensure_ascii=False)
         self._notify_change_listeners("file_types")
 

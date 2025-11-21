@@ -46,7 +46,7 @@
 - 功能与安全策略符合 012 提示词要求，建议通过验收。
 
 ## 7. 后续工作（不阻塞012）
-- t1：补齐单测（URL 校验、相对/锚点/file://、fail-closed、动作路由）。
-- pm1：对齐性能阈值读取与示例配置。
-- fix_tests3：ConfigManager 基础用例修复。
-- fix_tests4：SnapshotManager 并发接口桩/保护。
+- t1（已完成）：补齐单测（URL 校验、相对/锚点/file://、fail-closed、动作路由）。
+- pm1（已完成）：对齐性能阈值读取与示例配置（features/logging.json 新增 metrics.thresholds 与快照参数，并与 runtime/performance.json 阈值对齐）。
+- fix_tests3（已完成）：ConfigManager 基础用例修复。
+- fix_tests4（已完成）：SnapshotManager 并发接口桩/保护。

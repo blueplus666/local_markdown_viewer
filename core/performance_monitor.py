@@ -14,6 +14,7 @@ import time
 import json
 import threading
 import logging
+import builtins
 from pathlib import Path
 from typing import Dict, Any, Optional, Union, List, Callable, Tuple
 from dataclasses import dataclass, asdict
@@ -434,7 +435,7 @@ class PerformanceMonitor:
                     'alerts': [alert.to_dict() for alert in self.alerts]
                 }
                 
-                with open(output_file, 'w', encoding='utf-8') as f:
+                with builtins.open(output_file, 'w', encoding='utf-8') as f:
                     json.dump(data, f, indent=2, ensure_ascii=False)
                 
                 self.logger.info(f"性能指标已导出到: {output_file}")

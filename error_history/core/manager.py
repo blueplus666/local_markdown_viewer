@@ -13,6 +13,7 @@ from pathlib import Path
 from datetime import datetime, date, timedelta
 from typing import Dict, List, Optional, Any, Tuple
 from contextlib import contextmanager
+import builtins
 
 from .models import ErrorRecord, DailyStatistics, ErrorHistoryConfig, ErrorSeverity, ErrorCategory
 
@@ -1452,14 +1453,14 @@ class ErrorHistoryManager:
         }
 
         import json
-        with open(file_path, 'w', encoding='utf-8') as f:
+        with builtins.open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
 
     def _export_csv(self, errors: List[ErrorRecord], file_path: str):
         """导出为CSV格式"""
         import csv
 
-        with open(file_path, 'w', newline='', encoding='utf-8') as f:
+        with builtins.open(file_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
 
             # 写入表头

@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional, Callable, Union
 from dataclasses import dataclass, asdict
 from datetime import datetime
-
+import builtins
 
 @dataclass
 class PerformanceMetrics:
@@ -295,7 +295,7 @@ def example_function():
             baseline_data['results'][test_name] = metrics.to_dict()
         
         # 保存到文件
-        with open(self.baseline_file, 'w', encoding='utf-8') as f:
+        with builtins.open(self.baseline_file, 'w', encoding='utf-8') as f:
             json.dump(baseline_data, f, indent=2, ensure_ascii=False)
         
         # 更新内存中的基准数据
@@ -473,7 +473,7 @@ def example_function():
         for test_name, metrics in self.current_results.items():
             results_data['results'][test_name] = metrics.to_dict()
         
-        with open(self.results_file, 'w', encoding='utf-8') as f:
+        with builtins.open(self.results_file, 'w', encoding='utf-8') as f:
             json.dump(results_data, f, indent=2, ensure_ascii=False)
         
         self.logger.info(f"测试结果已保存到: {self.results_file}")

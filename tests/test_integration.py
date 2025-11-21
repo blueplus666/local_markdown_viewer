@@ -450,6 +450,9 @@ if __name__ == "__main__":
         """测试信号连接"""
         print("\n=== 测试信号连接 ===")
         
+        self.window.file_tree.set_root_path(self.test_dir)
+        QTest.qWait(300)
+        
         # 测试文件选择信号
         signal_received = False
         file_path_received = ""

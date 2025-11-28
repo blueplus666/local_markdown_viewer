@@ -312,7 +312,7 @@ class RenderPerformanceOptimizer:
         Returns:
             渲染结果
         """
-        start_time = time.time()
+        start_time = time.perf_counter()
         
         # 在快速模式下对内容进行截断，降低处理量
         if getattr(self, "_fast_mode", False) and len(content) > 20000:
@@ -343,9 +343,19 @@ class RenderPerformanceOptimizer:
             result = self._render_single_thread(content, mode)
         
         if result['success']:
-            render_time = (time.time() - start_time) * 1000
+            render_time = (time.perf_counter() - start_time) * 1000
             content_length = len(content)
-            render_speed = content_length / render_time if render_time > 0 else 0
+            if content_length > 0 and render_time <= 0:
+                render_time = 0.01
+
+            render_speed = (
+                content_length / render_time
+                if render_time > 0 and content_length > 0
+                else 0
+            )
+            
+            
+            
             
             # 更新统计信息
             self.render_stats['total_renders'] += 1

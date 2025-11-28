@@ -1,9 +1,0 @@
-{
-  "enabled": false,
-  "monitoring": {
-    "enabled": false,
-    "interval_seconds": 300,
-    "retention_days": 3
-  }
-}
-

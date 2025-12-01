@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "第二阶段实现提示词" / "本地Markdown文件渲染程序-重构过程-第二阶段核心功能-06_后期完善-实现提示词" / "outputs"
+OUT = ROOT
 
 
 def _read_json(path: Path):

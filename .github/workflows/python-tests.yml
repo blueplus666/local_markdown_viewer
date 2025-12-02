@@ -69,6 +69,10 @@ jobs:
         shell: pwsh
         run: ./run_pytests.ps1
 
+      - name: Run QA gate (4.3.3/4.3.4)
+        shell: pwsh
+        run: python -m pytest tests/test_qa_all.py -q
+
       - name: Upload pytest logs
         if: always()
         uses: actions/upload-artifact@v4

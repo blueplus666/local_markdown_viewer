@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT
+REPORTS = ROOT / "reports" / "qa"
 
 
 def _read_json(path: Path):
@@ -18,14 +18,14 @@ def _read_json(path: Path):
 
 
 def test_integration_report_ok():
-    data = _read_json(OUT / "integration_test_report.json")
+    data = _read_json(REPORTS / "integration_test_report.json")
     summary = data.get("test_summary", {})
     assert summary.get("success_rate", 0) == 100.0, "集成测试成功率不足 100%"
     assert summary.get("failed_tests", 1) == 0, "存在失败用例"
 
 
 def test_validation_report_ok():
-    data = _read_json(OUT / "validation_report.json")
+    data = _read_json(REPORTS / "validation_report.json")
     # 简要检查几个关键模块通过
     keys = [
         "system_integration_coordinator",

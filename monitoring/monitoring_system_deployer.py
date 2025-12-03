@@ -18,7 +18,7 @@ import os
 import builtins
 
 # 导入前序模块的成果（使用模拟实现）
-from mock_dependencies import (
+from integration.mock_dependencies import (
     PerformanceMonitor, UnifiedErrorHandler, EnhancedLogger, UnifiedCacheManager
 )
 

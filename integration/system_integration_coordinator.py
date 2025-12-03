@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 # 导入前序模块的成果（使用模拟实现）
-from mock_dependencies import (
+from integration.mock_dependencies import (
     HybridMarkdownRenderer, FileResolver, DynamicModuleImporter,
     ConfigManager, UnifiedCacheManager, UnifiedErrorHandler,
     PerformanceMonitor, EnhancedLogger

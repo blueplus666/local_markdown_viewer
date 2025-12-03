@@ -1,0 +1,43 @@
+name: Integration QA
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  integration-qa:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # 或与你项目实际版本一致，例如 3.10/3.12
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run integration QA
+        run: |
+          python -m integration.qa --details `
+            --write-report integration/qa/artifacts/integration_test_report_ci.json `
+            --strict `
+            --fail-on-success-rate-below 100
+
+      - name: Upload QA report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-qa-report
+          path: integration/qa/artifacts/integration_test_report_ci.json

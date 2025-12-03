@@ -15,7 +15,7 @@ import psutil
 import os
 
 # 导入前序模块的成果（使用模拟实现）
-from mock_dependencies import (
+from integration.mock_dependencies import (
     HybridMarkdownRenderer, FileResolver, PerformanceMonitor,
     UnifiedCacheManager, UnifiedErrorHandler, EnhancedLogger
 )
